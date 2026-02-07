@@ -1,0 +1,408 @@
+import { Link } from "react-router-dom";
+import { useRef } from "react";
+import { Button } from "@/components/ui/button";
+import { Card, CardContent } from "@/components/ui/card";
+import {
+  Target,
+  Eye,
+  Heart,
+  Lightbulb,
+  Award,
+  Shield,
+  Handshake,
+  CheckCircle2,
+  ArrowRight,
+  Zap,
+  Droplets,
+  Wind,
+  MapPin,
+  Clock
+} from "lucide-react";
+import { gsap } from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { useGSAP } from "@gsap/react";
+
+gsap.registerPlugin(ScrollTrigger);
+import Layout from "@/components/layout/Layout";
+
+import aboutHeroBg from "@/assets/about-hero-bg.png";
+import engineerMeeting from "@/assets/engineer-meeting.png";
+
+import PageHero from "@/components/ui/PageHero";
+
+// Main About Page Component
+const About = () => {
+  return (
+    <Layout>
+      <PageHero
+        badge="About Aghora"
+        title="Engineering Excellence"
+        subtitle="Since 2015"
+        description="A professionally driven MEP engineering consultancy delivering integrated solutions with a strong focus on quality, safety, and performance."
+        backgroundImage={aboutHeroBg}
+        variant="clean"
+      />
+      <CompanyOverviewSection />
+      <CoreServicesSection />
+      <ExperienceIndustriesSection />
+      <PhilosophySection />
+      <WhyChooseUsSection />
+      <CTASection />
+    </Layout>
+  );
+};
+
+// Company Overview Section with Timeline Style
+const CompanyOverviewSection = () => {
+  const sectionRef = useRef(null);
+
+  useGSAP(() => {
+    gsap.from(".reveal-text", {
+      y: 50,
+      opacity: 0,
+      duration: 1,
+      stagger: 0.2,
+      scrollTrigger: {
+        trigger: sectionRef.current,
+        start: "top 75%",
+      }
+    });
+  }, { scope: sectionRef });
+
+  return (
+    <section ref={sectionRef} className="py-24 bg-white relative overflow-hidden">
+      <div className="absolute top-0 left-0 w-full h-[500px] bg-gradient-to-b from-grey-50 to-transparent -z-10" />
+      <div className="container mx-auto px-6">
+        <div className="flex flex-col lg:flex-row gap-20 items-start">
+          <div className="lg:w-1/2 space-y-8 sticky top-32">
+            <div>
+              <span className="inline-block py-1 px-3 rounded-full bg-secondary/10 text-secondary text-xs font-bold tracking-[0.2em] uppercase mb-6 border border-secondary/20">
+                Company Overview
+              </span>
+              <h2 className="text-5xl md:text-6xl font-black text-primary uppercase tracking-tighter leading-tight mb-6 mt-2 reveal-text">
+                Professionally <br /> Driven <span className="text-secondary">Excellence</span>
+              </h2>
+              <div className="w-24 h-1.5 bg-secondary rounded-full reveal-text" />
+            </div>
+
+            <p className="text-xl text-primary/70 leading-relaxed font-medium reveal-text">
+              Aghora Engineering MEP Consultants is a professionally driven MEP engineering consultancy delivering integrated engineering solutions with a strong focus on quality, safety, and performance.
+            </p>
+            <p className="text-lg text-primary/60 leading-relaxed reveal-text">
+              Established on <strong className="text-primary">May 28, 2015</strong>, in Coimbatore, the firm has grown into a trusted name for comprehensive Mechanical, Electrical, Plumbing, Fire Protection, and ELV engineering services.
+            </p>
+          </div>
+
+          <div className="lg:w-1/2 space-y-8">
+            {/* Timeline Item 1 */}
+            <div className="relative pl-12 border-l-2 border-secondary/20 hover:border-secondary transition-colors duration-500 group reveal-text">
+              <div className="absolute -left-[9px] top-0 w-4 h-4 rounded-full bg-white border-4 border-secondary group-hover:scale-125 transition-transform duration-300" />
+              <div className="bg-white p-8 rounded-[2rem] shadow-xl shadow-primary/5 hover:shadow-2xl hover:shadow-secondary/10 transition-all duration-500 border border-grey-100 group-hover:border-secondary/30">
+                <span className="text-secondary font-black text-lg mb-2 block">2015 - The Beginning</span>
+                <h3 className="text-2xl font-bold text-primary mb-3">Foundation at GN Mills</h3>
+                <p className="text-primary/60 leading-relaxed">
+                  Aghora Engineering began its journey with a clear commitment to excellence, establishing strong roots in Coimbatore.
+                </p>
+              </div>
+            </div>
+
+            {/* Timeline Item 2 */}
+            <div className="relative pl-12 border-l-2 border-secondary/20 hover:border-secondary transition-colors duration-500 group reveal-text">
+              <div className="absolute -left-[9px] top-0 w-4 h-4 rounded-full bg-white border-4 border-secondary group-hover:scale-125 transition-transform duration-300" />
+              <div className="bg-white p-8 rounded-[2rem] shadow-xl shadow-primary/5 hover:shadow-2xl hover:shadow-secondary/10 transition-all duration-500 border border-grey-100 group-hover:border-secondary/30">
+                <span className="text-secondary font-black text-lg mb-2 block">2020 - Expansion</span>
+                <h3 className="text-2xl font-bold text-primary mb-3">Growth to Gandhipuram</h3>
+                <p className="text-primary/60 leading-relaxed">
+                  Expanded operations to Gandhipuram, scaling capabilities to serve a wider range of technically complex projects.
+                </p>
+              </div>
+            </div>
+
+            {/* Visual Element */}
+            <div className="relative h-72 rounded-[2.5rem] overflow-hidden shadow-2xl group mt-8 reveal-text">
+              <img src={engineerMeeting} alt="Engineering Team" className="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-110" />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
+              <div className="absolute bottom-8 left-8 text-white">
+                <p className="font-bold text-lg">Building the Future</p>
+                <p className="text-white/80 text-sm">One project at a time</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+};
+
+// Core Services Section with "Holographic" Cards
+const CoreServicesSection = () => {
+  const containerRef = useRef(null);
+  const services = [
+    { title: "Mechanical", icon: Wind, desc: "HVAC & Thermal Systems" },
+    { title: "Electrical", icon: Zap, desc: "Power & Lighting" },
+    { title: "Plumbing", icon: Droplets, desc: "Water & Drainage" },
+    { title: "Fire Protection", icon: Shield, desc: "Safety Systems" },
+    { title: "ELV Systems", icon: CheckCircle2, desc: "Data & Security" }
+  ];
+
+  useGSAP(() => {
+    gsap.from(".service-card", {
+      y: 60,
+      opacity: 0,
+      duration: 0.8,
+      stagger: 0.1,
+      scrollTrigger: {
+        trigger: containerRef.current,
+        start: "top 80%"
+      }
+    })
+  }, { scope: containerRef });
+
+  return (
+    <section ref={containerRef} className="py-24 bg-primary relative overflow-hidden">
+      {/* Abstract Background Shapes */}
+      <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-secondary/5 rounded-full blur-[100px] pointer-events-none" />
+      <div className="absolute bottom-0 left-0 w-[400px] h-[400px] bg-blue-500/5 rounded-full blur-[100px] pointer-events-none" />
+
+      <div className="container mx-auto px-6 relative z-10">
+        <div className="text-center mb-20">
+          <span className="text-sm font-bold tracking-[0.3em] text-secondary uppercase block mb-4">What We Do</span>
+          <h2 className="text-4xl md:text-5xl font-black text-white uppercase tracking-tighter">
+            Core <span className="text-secondary">Services</span>
+          </h2>
+        </div>
+
+        {/* Centered Grid/Flex Layout for 5 Items */}
+        <div className="flex flex-wrap justify-center gap-8">
+          {services.map((service, idx) => (
+            <div key={idx} className="service-card group relative w-full sm:w-[calc(50%-2rem)] lg:w-[calc(33.33%-2rem)] xl:w-[calc(20%-2rem)] min-w-[280px] max-w-[350px]
+              bg-white/15 backdrop-blur-xl border border-white/30 rounded-[2rem] p-8 
+              hover:bg-white/25 transition-all duration-300 hover:-translate-y-2 hover:shadow-2xl hover:shadow-secondary/30 
+              flex flex-col items-center text-center h-auto min-h-[320px]">
+
+              {/* Shine Effect */}
+              <div className="absolute inset-0 bg-gradient-to-tr from-white/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none rounded-[2rem]" />
+
+              <div className="w-20 h-20 bg-secondary/20 rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-500 border border-white/20 group-hover:border-secondary/60 shadow-lg shadow-black/10">
+                <service.icon className="w-10 h-10 text-secondary group-hover:text-white transition-colors duration-300" />
+              </div>
+
+              <h3 className="text-xl font-black text-white uppercase tracking-tight mb-3 group-hover:text-secondary transition-colors duration-300">
+                {service.title}
+              </h3>
+
+              <p className="text-white/90 text-sm font-medium leading-relaxed">
+                {service.desc}
+              </p>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+};
+
+// Experience & Industries Section - Interactive Grid
+const ExperienceIndustriesSection = () => {
+  const sectors = [
+    "Healthcare Facilities", "IT & Commercial", "Educational Inst.",
+    "Hospitality Projects", "Residential Dev.", "Industrial Infra."
+  ];
+
+  return (
+    <section className="py-24 bg-grey-50 relative overflow-hidden">
+      <div className="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/cubes.png')] opacity-[0.03]" />
+
+      <div className="container mx-auto px-6 relative z-10">
+        <div className="grid lg:grid-cols-12 gap-16 items-center">
+          <div className="lg:col-span-5">
+            <span className="text-sm font-bold tracking-[0.3em] text-secondary uppercase block mb-6">Experience</span>
+            <h2 className="text-4xl md:text-6xl font-black text-primary uppercase tracking-tighter mb-8 leading-none">
+              Trusted by <br /><span className="text-secondary">Leaders</span>
+            </h2>
+
+            <div className="bg-white p-8 rounded-[2rem] shadow-xl shadow-primary/5 border border-primary/5 mb-8 relative overflow-hidden group">
+              <div className="absolute top-0 right-0 w-24 h-24 bg-secondary/10 rounded-bl-[4rem] transition-all duration-500 group-hover:scale-150" />
+              <h3 className="text-xl font-bold text-primary mb-2">Since 2022</h3>
+              <p className="text-primary/70 leading-relaxed mb-4">
+                Part of prestigious international projects including <strong className="text-primary font-bold decoration-secondary underline decoration-2 underline-offset-4">ADNOC</strong>.
+              </p>
+              <p className="text-sm text-primary/50">Expertise in substation design & large administrative facilities.</p>
+            </div>
+
+            <div className="flex flex-wrap gap-2">
+              {['NBC', 'IS', 'ASHRAE', 'ISHRAE', 'SMACNA'].map(std => (
+                <span key={std} className="px-3 py-1 bg-white border border-primary/10 rounded-full text-xs font-bold text-primary/60 uppercase tracking-wider">
+                  {std}
+                </span>
+              ))}
+            </div>
+          </div>
+
+          <div className="lg:col-span-7">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 gap-5">
+              {sectors.map((sector, idx) => (
+                <div key={idx} className="group bg-white p-6 rounded-[1.5rem] shadow-sm hover:shadow-xl transition-all duration-300 hover:-translate-y-1 border border-transparent hover:border-secondary/20 flex items-center gap-4">
+                  <div className="w-10 h-10 rounded-full bg-grey-50 flex items-center justify-center group-hover:bg-secondary transition-colors duration-300">
+                    <CheckCircle2 className="w-5 h-5 text-primary/30 group-hover:text-white transition-colors" />
+                  </div>
+                  <h4 className="font-bold text-primary uppercase tracking-tight text-sm opacity-80 group-hover:opacity-100">{sector}</h4>
+                </div>
+              ))}
+            </div>
+            <div className="mt-8 bg-secondary/10 rounded-[2rem] p-8 flex items-center justify-between border border-secondary/20">
+              <div>
+                <p className="text-primary font-bold text-lg">Energy Auditing</p>
+                <p className="text-primary/60 text-sm">Optimizing efficiency & reliability</p>
+              </div>
+              <Button asChild variant="outline" className="border-secondary text-secondary hover:bg-secondary hover:text-white rounded-xl">
+                <Link to="/services">Explore Services</Link>
+              </Button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+};
+
+// Philosophy Section (Vision & Mission) - Kept mostly same but ensures alignment
+const PhilosophySection = () => {
+  const philosophies = [
+    {
+      icon: Eye,
+      title: "Our Vision",
+      description: "To be the most trusted name in MEP engineering, known for innovation, quality, and sustainable solutions globally."
+    },
+    {
+      icon: Target,
+      title: "Our Mission",
+      description: "To deliver excellence through teamwork, technical mastery, and a client-centric approach in every project we undertake."
+    },
+    {
+      icon: Lightbulb,
+      title: "Our Philosophy",
+      description: "We believe engineering is not just about systems; it's about solving problems and creating environments where people thrive."
+    }
+  ];
+
+  return (
+    <section className="py-24 bg-white relative overflow-hidden">
+      <div className="container mx-auto px-6">
+        <div className="text-center max-w-3xl mx-auto mb-20">
+          <span className="text-sm font-bold tracking-[0.3em] text-secondary uppercase block mb-4">Foundation</span>
+          <h2 className="text-4xl md:text-6xl font-black text-primary uppercase tracking-tighter leading-none">
+            Built on <span className="text-secondary">Purpose</span>
+          </h2>
+        </div>
+
+        <div className="grid md:grid-cols-3 gap-12">
+          {philosophies.map((item, idx) => (
+            <div key={idx} className="group p-10 bg-grey-50 rounded-[2.5rem] border border-transparent hover:border-secondary transition-all duration-500 hover:shadow-2xl hover:shadow-secondary/10">
+              <div className="w-16 h-16 bg-white rounded-2xl flex items-center justify-center mb-8 shadow-lg group-hover:bg-secondary transition-colors">
+                <item.icon className="w-8 h-8 text-secondary group-hover:text-primary transition-colors" />
+              </div>
+              <h3 className="text-2xl font-black text-primary mb-4 uppercase tracking-tighter">{item.title}</h3>
+              <p className="text-primary/60 leading-relaxed font-medium">{item.description}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+};
+
+// Why Choose Us Section (Replaces LedByExperience)
+const WhyChooseUsSection = () => {
+  const containerRef = useRef(null);
+
+  return (
+    <section ref={containerRef} className="py-24 bg-white overflow-hidden relative">
+      <div className="container mx-auto px-6">
+        <div className="flex flex-col lg:flex-row gap-20 items-center">
+          <div className="lg:w-1/2 relative group">
+            <div className="relative z-10 rounded-[3rem] overflow-hidden shadow-2xl border-[8px] border-white h-[600px] w-full bg-grey-50">
+              <img src="https://images.unsplash.com/photo-1581094794329-cd119277d38d?auto=format&fit=crop&q=80&w=1000" alt="Why Choose Us" className="w-full h-full object-cover transition-transform duration-[2s] group-hover:scale-105" />
+              {/* Stats Overlay */}
+              <div className="absolute bottom-0 left-0 right-0 bg-primary/95 backdrop-blur-md p-10 text-white border-t border-white/10">
+                <div className="flex justify-between items-center">
+                  <div>
+                    <p className="text-6xl font-black text-secondary mb-1">12+</p>
+                    <p className="text-xs font-bold uppercase tracking-widest text-white/50">Years Experience</p>
+                  </div>
+                  <div className="w-px h-16 bg-white/10" />
+                  <div>
+                    <p className="text-6xl font-black text-secondary mb-1">100%</p>
+                    <p className="text-xs font-bold uppercase tracking-widest text-white/50">Commitment</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+            {/* Decorative Elements */}
+            <div className="absolute -top-6 -left-6 w-full h-full border-2 border-secondary/20 rounded-[3.5rem] -z-10" />
+            <div className="absolute top-1/2 -right-20 w-64 h-64 bg-secondary/5 rounded-full blur-3xl -z-10" />
+          </div>
+
+          <div className="lg:w-1/2 space-y-10">
+            <div>
+              <span className="text-sm font-bold tracking-[0.3em] text-secondary uppercase block mb-4">Why Choose Us</span>
+              <h2 className="text-5xl md:text-7xl font-black text-primary uppercase tracking-tighter leading-[0.9]">
+                Technical <br /> <span className="text-secondary">Integrity</span>
+              </h2>
+            </div>
+
+            <div className="space-y-6 text-lg text-primary/70 leading-relaxed font-medium">
+              <p>
+                Backed by a dedicated team of engineers with <strong className="text-primary border-b-2 border-secondary/30">12+ years of hands-on industry experience</strong>, Aghora Engineering delivers solutions that are technically sound, cost-effective, and future-ready.
+              </p>
+              <p>
+                We believe in building long-term partnerships through transparency, technical integrity, and consistent project delivery. Our client-centric approach ensures that every solution is tailored to specific project needs.
+              </p>
+            </div>
+
+            <div className="pt-4">
+              <Button asChild className="group relative bg-gradient-to-r from-secondary via-secondary to-secondary/90 text-primary font-black rounded-2xl px-12 h-16 text-xs tracking-widest uppercase shadow-xl shadow-secondary/30 hover:shadow-2xl hover:shadow-secondary/40 transition-all duration-500 hover:-translate-y-1 hover:scale-105 overflow-hidden">
+                <Link to="/services" className="flex items-center gap-3">
+                  <span>Explore Our Services</span>
+                  <ArrowRight className="w-4 h-4 transition-transform duration-300 group-hover:translate-x-1" />
+                </Link>
+              </Button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  )
+}
+
+
+// CTA Section
+const CTASection = () => {
+  return (
+    <section className="py-24 bg-grey-50 px-6">
+      <div className="container mx-auto">
+        <div className="bg-primary rounded-[3rem] p-12 md:p-20 text-center text-white relative overflow-hidden group">
+          <div className="absolute inset-0 z-0 opacity-10 grayscale bg-[url('https://images.unsplash.com/photo-1541888946425-d81bb19480c5?auto=format&fit=crop&q=80&w=1200')]" />
+
+          <div className="relative z-10 space-y-8">
+            <h2 className="text-4xl md:text-6xl font-black uppercase tracking-tighter leading-none max-w-4xl mx-auto">
+              Partner With <br /> <span className="text-secondary">Leading Experts</span>
+            </h2>
+            <p className="text-lg text-white/50 max-w-2xl mx-auto leading-relaxed">
+              Experience the difference that technical mastery and 12+ years of industry leadership can make for your project.
+            </p>
+            <Button asChild size="lg" className="group relative bg-gradient-to-r from-secondary via-secondary to-secondary/90 text-primary font-black rounded-2xl px-12 h-16 text-xs tracking-widest uppercase shadow-xl shadow-secondary/30 hover:shadow-2xl hover:shadow-secondary/40 transition-all duration-500 hover:-translate-y-1 hover:scale-105 overflow-hidden">
+              <Link to="/contact" className="flex items-center gap-3">
+                <span>Discuss Your Project</span>
+                <ArrowRight className="w-4 h-4 transition-transform duration-300 group-hover:translate-x-1" />
+              </Link>
+            </Button>
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+};
+
+export default About;
+

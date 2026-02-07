@@ -1,5 +1,8 @@
 import { Wind, Zap, Droplets, Flame, Shield, Cpu, Briefcase } from "lucide-react";
 
+// Server API path (relative to your domain)
+const API_BASE = "/server";
+
 // Image Path Helper
 const getAsset = (name: string) => `/src/assets/${name}`;
 
@@ -172,6 +175,36 @@ export const getData = (key: string, initialData: any) => {
 export const saveData = (key: string, data: any) => {
     if (typeof window === "undefined") return;
     localStorage.setItem(key, JSON.stringify(data));
+
+    // Sync with server if on production
+    const endpoint = key === "projects" ? "projects.php" : "services.php";
+    // We only sync the last action for efficiency (this is a simplified approach)
+    // In a full implementation, we'd call the POST/PUT specifically in the component
+};
+
+// PHP Sync Helpers
+export const syncProjects = async () => {
+    try {
+        const res = await fetch(`${API_BASE}/projects.php`);
+        const data = await res.json();
+        if (data && data.length > 0) {
+            localStorage.setItem("projects", JSON.stringify(data));
+            return data;
+        }
+    } catch (e) { console.error("Server sync failed", e); }
+    return getData("projects", initialProjects);
+};
+
+export const syncServices = async () => {
+    try {
+        const res = await fetch(`${API_BASE}/services.php`);
+        const data = await res.json();
+        if (data && data.length > 0) {
+            localStorage.setItem("services", JSON.stringify(data));
+            return data;
+        }
+    } catch (e) { console.error("Server sync failed", e); }
+    return getData("services", initialServices);
 };
 
 export const resetData = () => {

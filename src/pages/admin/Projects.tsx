@@ -1,5 +1,5 @@
 import { useState, useEffect, useRef } from "react";
-import { getData, saveData, initialProjects, initialServices } from "@/lib/data-store";
+import { getData, saveData, initialProjects, initialServices, syncProjects, syncServices } from "@/lib/data-store";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
@@ -40,8 +40,13 @@ const AdminProjects = () => {
     const fileInputRef = useRef<HTMLInputElement>(null);
 
     useEffect(() => {
-        setProjects(getData("projects", initialProjects));
-        setServices(getData("services", initialServices));
+        const loadData = async () => {
+            const projectsData = await syncProjects();
+            const servicesData = await syncServices();
+            setProjects(projectsData);
+            setServices(servicesData);
+        };
+        loadData();
     }, []);
 
     const handleImageUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -59,7 +64,7 @@ const AdminProjects = () => {
         }
     };
 
-    const handleSave = (e: React.FormEvent<HTMLFormElement>) => {
+    const handleSave = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
         const formData = new FormData(e.currentTarget);
 
@@ -75,32 +80,52 @@ const AdminProjects = () => {
             image: imageToSave,
         };
 
-        let updatedProjects;
-        if (editingProject) {
-            updatedProjects = projects.map(p => p.id === editingProject.id ? projectData : p);
-            toast.success("Project data updated successfully", {
-                style: { background: '#141B2D', color: '#fff' }
+        try {
+            const method = editingProject ? 'PUT' : 'POST';
+            const res = await fetch('/server/projects.php', {
+                method,
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(projectData)
             });
-        } else {
-            updatedProjects = [...projects, projectData];
-            toast.success("New project published to website", {
-                style: { background: '#2563EB', color: '#fff' }
-            });
-        }
+            const result = await res.json();
 
-        setProjects(updatedProjects);
-        saveData("projects", updatedProjects);
-        setIsDialogOpen(false);
-        setEditingProject(null);
-        setPreviewImage(null);
+            if (result.success) {
+                let updatedProjects;
+                if (editingProject) {
+                    updatedProjects = projects.map(p => p.id === editingProject.id ? projectData : p);
+                    toast.success("Project data updated successfully");
+                } else {
+                    projectData.id = result.id;
+                    updatedProjects = [...projects, projectData];
+                    toast.success("New project published to website");
+                }
+
+                setProjects(updatedProjects);
+                saveData("projects", updatedProjects);
+                setIsDialogOpen(false);
+                setEditingProject(null);
+                setPreviewImage(null);
+            }
+        } catch (error) {
+            toast.error("Failed to save to server");
+            console.error(error);
+        }
     };
 
-    const handleDelete = (id: number) => {
+    const handleDelete = async (id: number) => {
         if (confirm("Move this project to trash? This will remove it from the public site.")) {
-            const updatedProjects = projects.filter(p => p.id !== id);
-            setProjects(updatedProjects);
-            saveData("projects", updatedProjects);
-            toast.error("Project archived and removed");
+            try {
+                const res = await fetch(`/server/projects.php?id=${id}`, { method: 'DELETE' });
+                const result = await res.json();
+                if (result.success) {
+                    const updatedProjects = projects.filter(p => p.id !== id);
+                    setProjects(updatedProjects);
+                    saveData("projects", updatedProjects);
+                    toast.error("Project archived and removed");
+                }
+            } catch (error) {
+                toast.error("Delete failed");
+            }
         }
     };
 

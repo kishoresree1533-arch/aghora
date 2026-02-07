@@ -1,5 +1,5 @@
 import { useState, useEffect, useRef } from "react";
-import { getData, saveData, initialServices } from "@/lib/data-store";
+import { getData, saveData, initialServices, syncServices } from "@/lib/data-store";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
@@ -39,7 +39,11 @@ const AdminServices = () => {
     const fileInputRef = useRef<HTMLInputElement>(null);
 
     useEffect(() => {
-        setServices(getData("services", initialServices));
+        const loadData = async () => {
+            const servicesData = await syncServices();
+            setServices(servicesData);
+        };
+        loadData();
     }, []);
 
     const handleImageUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -57,7 +61,7 @@ const AdminServices = () => {
         }
     };
 
-    const handleSave = (e: React.FormEvent<HTMLFormElement>) => {
+    const handleSave = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
         const formData = new FormData(e.currentTarget);
 
@@ -79,32 +83,50 @@ const AdminServices = () => {
             capabilities: capabilitiesArray.length > 0 ? capabilitiesArray : ["Consultancy", "Engineering Design", "Field Implementation", "Testing & Commissioning"]
         };
 
-        let updatedServices;
-        if (editingService) {
-            updatedServices = services.map(s => s.id === editingService.id ? serviceData : s);
-            toast.success("Service architecture updated", {
-                style: { background: '#141B2D', color: '#fff', borderRadius: '16px' }
+        try {
+            const method = editingService ? 'PUT' : 'POST';
+            const res = await fetch('/server/services.php', {
+                method,
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(serviceData)
             });
-        } else {
-            updatedServices = [...services, serviceData];
-            toast.success("New discipline integrated", {
-                style: { background: '#D97706', color: '#fff', borderRadius: '16px' }
-            });
-        }
+            const result = await res.json();
 
-        setServices(updatedServices);
-        saveData("services", updatedServices);
-        setIsDialogOpen(false);
-        setEditingService(null);
-        setPreviewImage(null);
+            if (result.success) {
+                let updatedServices;
+                if (editingService) {
+                    updatedServices = services.map(s => s.id === editingService.id ? serviceData : s);
+                    toast.success("Service architecture updated");
+                } else {
+                    updatedServices = [...services, serviceData];
+                    toast.success("New discipline integrated");
+                }
+
+                setServices(updatedServices);
+                saveData("services", updatedServices);
+                setIsDialogOpen(false);
+                setEditingService(null);
+                setPreviewImage(null);
+            }
+        } catch (error) {
+            toast.error("Failed to save to server");
+        }
     };
 
-    const handleDelete = (id: string) => {
+    const handleDelete = async (id: string) => {
         if (confirm("Decommission this service? This will remove all associated capabilities from the live site.")) {
-            const updatedServices = services.filter(s => s.id !== id);
-            setServices(updatedServices);
-            saveData("services", updatedServices);
-            toast.error("Discipline decommissioned");
+            try {
+                const res = await fetch(`/server/services.php?id=${id}`, { method: 'DELETE' });
+                const result = await res.json();
+                if (result.success) {
+                    const updatedServices = services.filter(s => s.id !== id);
+                    setServices(updatedServices);
+                    saveData("services", updatedServices);
+                    toast.error("Discipline decommissioned");
+                }
+            } catch (error) {
+                toast.error("Delete failed");
+            }
         }
     };
 

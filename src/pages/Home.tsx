@@ -35,10 +35,26 @@ import homeHeroBg from "@/assets/home-hero-bg.jpg";
 import innovativeEngineeringImg from "@/assets/innovative-engineering.jpg";
 import aboutEngineeringOfficeImg from "@/assets/about-engineering-office.jpg";
 import hvacServiceImg from "@/assets/hvac-service.jpg";
+import hvacEngineeringNewImg from "@/assets/hvac-engineering-new.jpg";
 import fpsServiceImg from "@/assets/fps-service.jpg";
 import pheServiceImg from "@/assets/phe-service.jpg";
 import elvServiceImg from "@/assets/elv-service.png";
 import luxuryVillaImg from "@/assets/luxury-villa-expertise.jpg";
+import hvacServiceLatestImg from "@/assets/hvac-engineering-latest.jpg";
+
+import pheServiceLatestImg from "@/assets/phe-engineering-latest.jpg";
+
+import fpsServiceNewImg from "@/assets/Fire Protection.jpg";
+import elvServiceLatestImg from "@/assets/elv-engineering-latest.jpg";
+import elvServiceNewImg from "@/assets/ELV & Smart Systems.jpg";
+
+import engineeringCollageImg from "@/assets/engineering-collage.jpg";
+import engineerAtWorkImg from "@/assets/engineer-at-work.jpg";
+import landmarksPrecisionImg from "@/assets/landmarks-precision.jpg";
+import aboutAghoraLatestImg from "@/assets/about-aghora-latest.jpg";
+
+
+
 
 
 // --- HERO SECTION ---
@@ -180,7 +196,9 @@ const PremiumStatsSection = () => {
           <div className="relative">
             <div className="h-[600px] w-full rounded-[3rem] overflow-hidden shadow-2xl relative group premium-popup">
               <img
-                src={innovativeEngineeringImg}
+                src={landmarksPrecisionImg}
+
+
                 alt="Innovative Engineering"
                 className="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-105"
               />
@@ -298,7 +316,9 @@ const AboutSection = () => {
             <div className="relative about-popup">
               <div className="rounded-[3rem] overflow-hidden shadow-2xl border-[10px] border-white active-image-mask aspect-square lg:aspect-auto h-[600px]">
                 <img
-                  src={aboutEngineeringOfficeImg}
+                  src={aboutAghoraLatestImg}
+
+
                   alt="MEP Engineering Office"
                   className="w-full h-full object-cover transition-transform duration-1000 hover:scale-105"
                 />
@@ -318,7 +338,8 @@ const services = [
     icon: Wind,
     title: "HVAC Engineering",
     description: "Heating Ventilation and Air Conditioning. Comprehensive design and sizing for optimal thermal comfort.",
-    image: hvacServiceImg
+    image: hvacServiceLatestImg
+
   },
   {
     icon: Zap,
@@ -330,19 +351,21 @@ const services = [
     icon: Droplets,
     title: "PHE Engineering",
     description: "Public Health Engineering. Sustainable plumbing, drainage, and water distribution systems.",
-    image: pheServiceImg
+    image: pheServiceLatestImg
+
   },
   {
     icon: Flame,
     title: "FPS Engineering",
     description: "Fire Protection Systems. Sprinklers, hydrants, and advanced alarm systems for safety.",
-    image: fpsServiceImg
+    image: fpsServiceNewImg
   },
   {
     icon: Shield,
     title: "ELV Engineering",
     description: "Extra Low Voltage. Integrated Security, CCTV, PA, and Access Control systems.",
-    image: elvServiceImg
+    image: elvServiceLatestImg
+
   },
   {
     icon: Cpu,
@@ -351,6 +374,7 @@ const services = [
     image: luxuryVillaImg
   },
 ];
+
 
 const ServicesSection = () => {
   const containerRef = useRef(null);

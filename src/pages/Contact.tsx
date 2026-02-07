@@ -203,8 +203,8 @@ const contactInfo = [
     detail: "+91 99624 27775",
     footer: "MON-SAT 9AM-6PM",
     color: "blue",
-    content: ["+91 99624 27775", "+971 4 123 4567"],
-    links: ["tel:+919962427775", "tel:+97141234567"],
+    content: ["+91 99624 27775", "+91 422 123 4567"],
+    links: ["tel:+919962427775", "tel:+914221234567"],
   },
   {
     icon: Mail,
@@ -403,9 +403,9 @@ const faqs = [
       "We handle projects of all sizes and types, including residential, commercial, industrial, healthcare, hospitality, and educational facilities. Our team has experience with both new construction and renovation projects.",
   },
   {
-    question: "Do you provide services outside the UAE?",
+    question: "Do you provide services outside Coimbatore?",
     answer:
-      "Yes, we have successfully delivered projects across the GCC region and beyond. Our team is experienced in working with international codes and standards.",
+      "Yes, we deliver projects across South India and internationally, specifically in the UAE (ADNOC projects). Our team is experienced in working with global codes and standards.",
   },
   {
     question: "What is your typical project timeline?",

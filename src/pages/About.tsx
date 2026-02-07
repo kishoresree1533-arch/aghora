@@ -27,6 +27,7 @@ import Layout from "@/components/layout/Layout";
 
 import aboutHeroBg from "@/assets/about-hero-bg.png";
 import engineerMeeting from "@/assets/engineer-meeting.png";
+import whyChooseUsBg from "@/assets/why-choose-us-new.jpg";
 
 import PageHero from "@/components/ui/PageHero";
 
@@ -148,9 +149,9 @@ const CoreServicesSection = () => {
   useGSAP(() => {
     gsap.from(".service-card", {
       y: 60,
-      opacity: 0,
       duration: 0.8,
       stagger: 0.1,
+      ease: "power3.out",
       scrollTrigger: {
         trigger: containerRef.current,
         start: "top 80%"
@@ -172,30 +173,13 @@ const CoreServicesSection = () => {
           </h2>
         </div>
 
-        {/* Centered Grid/Flex Layout for 5 Items */}
-        <div className="flex flex-wrap justify-center gap-8">
-          {services.map((service, idx) => (
-            <div key={idx} className="service-card group relative w-full sm:w-[calc(50%-2rem)] lg:w-[calc(33.33%-2rem)] xl:w-[calc(20%-2rem)] min-w-[280px] max-w-[350px]
-              bg-white/15 backdrop-blur-xl border border-white/30 rounded-[2rem] p-8 
-              hover:bg-white/25 transition-all duration-300 hover:-translate-y-2 hover:shadow-2xl hover:shadow-secondary/30 
-              flex flex-col items-center text-center h-auto min-h-[320px]">
-
-              {/* Shine Effect */}
-              <div className="absolute inset-0 bg-gradient-to-tr from-white/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none rounded-[2rem]" />
-
-              <div className="w-20 h-20 bg-secondary/20 rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-500 border border-white/20 group-hover:border-secondary/60 shadow-lg shadow-black/10">
-                <service.icon className="w-10 h-10 text-secondary group-hover:text-white transition-colors duration-300" />
-              </div>
-
-              <h3 className="text-xl font-black text-white uppercase tracking-tight mb-3 group-hover:text-secondary transition-colors duration-300">
-                {service.title}
-              </h3>
-
-              <p className="text-white/90 text-sm font-medium leading-relaxed">
-                {service.desc}
-              </p>
-            </div>
-          ))}
+        {/* Single Line 5-Column Grid Layout */}
+        <div className="max-w-[1400px] mx-auto px-4">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-4 justify-center items-stretch">
+            {services.map((service, idx) => (
+              <ServiceCard key={idx} service={service} index={idx} />
+            ))}
+          </div>
         </div>
       </div>
     </section>
@@ -316,15 +300,56 @@ const PhilosophySection = () => {
 const WhyChooseUsSection = () => {
   const containerRef = useRef(null);
 
+  useGSAP(() => {
+    const tl = gsap.timeline({
+      scrollTrigger: {
+        trigger: containerRef.current,
+        start: "top 70%",
+        toggleActions: "play none none reverse"
+      }
+    });
+
+    // Premium "3D Spring Pop" for Image
+    tl.fromTo(".why-choose-visual",
+      {
+        scale: 0.8,
+        rotationY: 25,
+        y: 80,
+        opacity: 0,
+        filter: "blur(20px)",
+        perspective: 1000
+      },
+      {
+        scale: 1,
+        rotationY: 0,
+        y: 0,
+        opacity: 1,
+        filter: "blur(0px)",
+        duration: 1.5,
+        ease: "elastic.out(1, 0.75)"
+      }
+    )
+      // Content Sections: Elastic "Pop" Effect
+      .from(".why-choose-content > div", {
+        y: 50,
+        opacity: 0,
+        scale: 0.9,
+        duration: 1,
+        stagger: 0.15,
+        ease: "power3.out"
+      }, "-=1.0");
+
+  }, { scope: containerRef });
+
   return (
     <section ref={containerRef} className="py-24 bg-white overflow-hidden relative">
       <div className="container mx-auto px-6">
         <div className="flex flex-col lg:flex-row gap-20 items-center">
-          <div className="lg:w-1/2 relative group">
-            <div className="relative z-10 rounded-[3rem] overflow-hidden shadow-2xl border-[8px] border-white h-[600px] w-full bg-grey-50">
-              <img src="https://images.unsplash.com/photo-1581094794329-cd119277d38d?auto=format&fit=crop&q=80&w=1000" alt="Why Choose Us" className="w-full h-full object-cover transition-transform duration-[2s] group-hover:scale-105" />
+          <div className="lg:w-1/2 relative group why-choose-visual">
+            <div className="relative z-10 rounded-[3rem] overflow-hidden shadow-2xl border-[8px] border-white h-[600px] w-full bg-grey-50 transition-transform duration-500 hover:rotate-1 hover:scale-[1.02]">
+              <img src={whyChooseUsBg} alt="Why Choose Us" className="w-full h-full object-cover transition-transform duration-[2s] group-hover:scale-110" />
               {/* Stats Overlay */}
-              <div className="absolute bottom-0 left-0 right-0 bg-primary/95 backdrop-blur-md p-10 text-white border-t border-white/10">
+              <div className="absolute bottom-0 left-0 right-0 bg-primary/95 backdrop-blur-md p-10 text-white border-t border-white/10 transition-transform duration-500 group-hover:translate-y-2">
                 <div className="flex justify-between items-center">
                   <div>
                     <p className="text-6xl font-black text-secondary mb-1">12+</p>
@@ -339,11 +364,11 @@ const WhyChooseUsSection = () => {
               </div>
             </div>
             {/* Decorative Elements */}
-            <div className="absolute -top-6 -left-6 w-full h-full border-2 border-secondary/20 rounded-[3.5rem] -z-10" />
+            <div className="absolute -top-6 -left-6 w-full h-full border-2 border-secondary/20 rounded-[3.5rem] -z-10 transition-transform duration-700 group-hover:translate-x-4 group-hover:-translate-y-4" />
             <div className="absolute top-1/2 -right-20 w-64 h-64 bg-secondary/5 rounded-full blur-3xl -z-10" />
           </div>
 
-          <div className="lg:w-1/2 space-y-10">
+          <div className="lg:w-1/2 space-y-10 why-choose-content">
             <div>
               <span className="text-sm font-bold tracking-[0.3em] text-secondary uppercase block mb-4">Why Choose Us</span>
               <h2 className="text-5xl md:text-7xl font-black text-primary uppercase tracking-tighter leading-[0.9]">
@@ -404,5 +429,32 @@ const CTASection = () => {
   );
 };
 
-export default About;
+// Reusable Service Card Component for About Page
+const ServiceCard = ({ service, index }: { service: any, index: number }) => (
+  <div
+    className="group relative h-[280px] bg-white/5 backdrop-blur-sm border border-white/10 rounded-[2rem] p-8 
+        hover:bg-white/10 transition-all duration-500 hover:-translate-y-2 hover:shadow-2xl hover:shadow-secondary/10 overflow-hidden flex flex-col justify-between"
+  >
+    {/* Background Gradient Blob */}
+    <div className="absolute -right-10 -top-10 w-40 h-40 bg-secondary/20 rounded-full blur-[50px] group-hover:bg-secondary/30 transition-all duration-500" />
 
+    <div className="relative z-10">
+      <div className="w-16 h-16 rounded-2xl bg-gradient-to-br from-white/10 to-transparent border border-white/5 flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-500 shadow-lg">
+        <service.icon className="w-8 h-8 text-secondary group-hover:text-white transition-colors duration-300" />
+      </div>
+
+      <h3 className="text-2xl font-black text-white uppercase tracking-tight mb-2 leading-none">
+        {service.title}
+      </h3>
+      <div className="w-12 h-1 bg-secondary/50 rounded-full mb-4 group-hover:w-20 transition-all duration-500" />
+    </div>
+
+    <div className="relative z-10">
+      <p className="text-white/60 text-sm font-medium leading-relaxed group-hover:text-white/90 transition-colors">
+        {service.desc}
+      </p>
+    </div>
+  </div>
+);
+
+export default About;

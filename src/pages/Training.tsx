@@ -1,6 +1,7 @@
+import { useRef } from "react";
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Card, CardContent } from "@/components/ui/card";
 import {
   GraduationCap,
   Clock,
@@ -14,70 +15,94 @@ import {
   Phone,
   ArrowRight,
 } from "lucide-react";
+import { gsap } from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { useGSAP } from "@gsap/react";
 import Layout from "@/components/layout/Layout";
 import PageHero from "@/components/ui/PageHero";
 
 import trainingHeroBg from "@/assets/training-hero-bg.png";
 
+gsap.registerPlugin(ScrollTrigger);
 
-// Training Benefits
+// Training Benefits Data
 const benefits = [
   {
     icon: GraduationCap,
     title: "Expert Instructors",
-    description:
-      "Learn from industry professionals with decades of hands-on experience.",
+    description: "Learn from industry professionals with decades of hands-on experience.",
+    color: "from-blue-500/20 to-blue-600/5",
   },
   {
     icon: Briefcase,
     title: "Practical Approach",
-    description:
-      "Real-world case studies and hands-on exercises for practical learning.",
+    description: "Real-world case studies and hands-on exercises for practical learning.",
+    color: "from-secondary/20 to-secondary/5",
   },
   {
     icon: Award,
     title: "Certification",
-    description:
-      "Receive recognized certificates upon successful course completion.",
+    description: "Receive recognized certificates upon successful course completion.",
+    color: "from-emerald-500/20 to-emerald-600/5",
   },
   {
     icon: Users,
     title: "Networking",
-    description:
-      "Connect with industry peers and expand your professional network.",
+    description: "Connect with industry peers and expand your professional network.",
+    color: "from-purple-500/20 to-purple-600/5",
   },
 ];
 
 const BenefitsSection = () => {
+  const containerRef = useRef(null);
+
+  useGSAP(() => {
+    gsap.from(".benefit-card", {
+      y: 30,
+      duration: 0.8,
+      stagger: 0.1,
+      ease: "power3.out",
+      scrollTrigger: {
+        trigger: containerRef.current,
+        start: "top 80%",
+      }
+    });
+  }, { scope: containerRef });
+
   return (
-    <section className="section-padding bg-muted">
-      <div className="container mx-auto container-padding">
-        <div className="text-center max-w-3xl mx-auto mb-10">
-          <span className="inline-block px-4 py-2 bg-secondary/10 text-secondary rounded-full text-sm font-medium mb-3">
+    <section ref={containerRef} className="py-24 bg-grey-50 relative overflow-hidden">
+      <div className="absolute top-0 right-0 w-full h-full pointer-events-none">
+        <div className="absolute top-1/4 -right-1/4 w-[600px] h-[600px] bg-secondary/5 rounded-full blur-[100px]" />
+      </div>
+      <div className="container mx-auto px-6 relative z-10">
+        <div className="text-center max-w-3xl mx-auto mb-20">
+          <span className="inline-block px-4 py-1.5 bg-secondary/10 text-secondary rounded-full text-xs font-bold tracking-[0.2em] mb-4 uppercase border border-secondary/20">
             Why Choose Us
           </span>
-          <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-3">
-            Training Benefits
+          <h2 className="text-4xl md:text-5xl font-black text-primary mb-6 uppercase tracking-tight">
+            Training <span className="text-secondary">Benefits</span>
           </h2>
-          <p className="text-lg text-muted-foreground">
-            Our training programs are designed to give you practical skills that
-            make an immediate impact in your career.
+          <p className="text-lg text-primary/60 leading-relaxed">
+            Our training programs are designed to give you practical skills that make an immediate impact in your career.
           </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 items-stretch">
           {benefits.map((benefit, index) => (
-            <Card key={benefit.title} className="card-hover bg-card text-center">
-              <CardContent className="p-6">
-                <div className="w-14 h-14 rounded-xl bg-secondary/10 flex items-center justify-center mx-auto mb-5">
-                  <benefit.icon className="h-7 w-7 text-secondary" />
-                </div>
-                <h3 className="text-xl font-semibold text-foreground mb-3">
+            <div key={benefit.title} className="benefit-card group relative p-10 rounded-[2.5rem] bg-white border border-grey-100 shadow-xl hover:shadow-2xl hover:shadow-secondary/10 transition-all duration-500 hover:-translate-y-2 flex flex-col h-full w-full">
+              <div className={`w-16 h-16 rounded-2xl bg-gradient-to-br ${benefit.color} flex items-center justify-center mb-8 border border-white/50 shadow-inner group-hover:scale-110 transition-transform duration-500 flex-shrink-0`}>
+                <benefit.icon className="h-8 w-8 text-secondary" />
+              </div>
+              <div className="min-h-[60px] flex items-center mb-4">
+                <h3 className="text-2xl font-black text-primary uppercase tracking-tight leading-tight">
                   {benefit.title}
                 </h3>
-                <p className="text-muted-foreground">{benefit.description}</p>
-              </CardContent>
-            </Card>
+              </div>
+              <p className="text-primary/60 text-sm leading-relaxed font-medium flex-grow">
+                {benefit.description}
+              </p>
+              <div className="absolute bottom-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-secondary/20 to-transparent scale-x-0 group-hover:scale-x-100 transition-transform duration-700" />
+            </div>
           ))}
         </div>
       </div>
@@ -85,150 +110,133 @@ const BenefitsSection = () => {
   );
 };
 
-// Course Catalog
+// Course Catalog Data
 const courses = [
   {
     category: "HVAC",
     title: "Advanced HVAC System Design",
     duration: "5 Days",
     level: "Intermediate",
-    topics: [
-      "Load calculation methodologies",
-      "Equipment selection criteria",
-      "Duct and piping design",
-      "Energy optimization techniques",
-      "BIM for HVAC systems",
-    ],
+    topics: ["Load calculation methodologies", "Equipment selection criteria", "Duct and piping design", "Energy optimization", "BIM for HVAC"],
+    accent: "bg-blue-600",
   },
   {
     category: "Electrical",
-    title: "Electrical Power Systems Engineering",
+    title: "Electrical Power Systems",
     duration: "4 Days",
     level: "Advanced",
-    topics: [
-      "Power distribution design",
-      "Short circuit analysis",
-      "Protective coordination",
-      "Emergency power systems",
-      "Smart grid integration",
-    ],
+    topics: ["Power distribution design", "Short circuit analysis", "Protective coordination", "Emergency power", "Smart grid integration"],
+    accent: "bg-yellow-500",
   },
   {
     category: "Plumbing",
     title: "Sustainable Plumbing Design",
     duration: "3 Days",
     level: "Beginner",
-    topics: [
-      "Water supply system design",
-      "Drainage system fundamentals",
-      "Water conservation strategies",
-      "Rainwater harvesting",
-      "Greywater recycling systems",
-    ],
+    topics: ["Water supply design", "Drainage fundamentals", "Conservation strategies", "Rainwater harvesting", "Greywater recycling"],
+    accent: "bg-cyan-500",
   },
   {
     category: "Fire Protection",
-    title: "Fire Protection System Design",
+    title: "Fire Protection Systems",
     duration: "4 Days",
     level: "Intermediate",
-    topics: [
-      "Fire code compliance",
-      "Sprinkler system design",
-      "Fire detection systems",
-      "Smoke management",
-      "Life safety planning",
-    ],
+    topics: ["Fire code compliance", "Sprinkler design", "Detection systems", "Smoke management", "Life safety planning"],
+    accent: "bg-red-600",
   },
   {
     category: "ELV",
-    title: "Building Management Systems (BMS)",
+    title: "Building Management (BMS)",
     duration: "3 Days",
     level: "Intermediate",
-    topics: [
-      "BMS architecture and protocols",
-      "System integration",
-      "Energy management",
-      "Monitoring and analytics",
-      "Cybersecurity for smart buildings",
-    ],
+    topics: ["BMS architecture", "System integration", "Energy management", "Monitoring & analytics", "Cybersecurity"],
+    accent: "bg-purple-600",
   },
   {
     category: "Software",
-    title: "MEP BIM Modeling with Revit",
+    title: "MEP BIM with Revit",
     duration: "5 Days",
     level: "Beginner",
-    topics: [
-      "Revit MEP fundamentals",
-      "Creating MEP families",
-      "Coordination workflows",
-      "Clash detection",
-      "Documentation and scheduling",
-    ],
+    topics: ["Revit MEP fundamentals", "Creating MEP families", "Coordination workflows", "Clash detection", "Documentation"],
+    accent: "bg-emerald-600",
   },
 ];
 
-const CourseCard = ({ course }: { course: (typeof courses)[0] }) => {
+const CourseCard = ({ course }: { course: typeof courses[0] }) => {
   return (
-    <Card className="flex flex-col h-full rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-500 ease-out hover:-translate-y-2 hover:scale-[1.02] border-border/50 overflow-hidden group">
-      <CardHeader className="pb-4 pt-6 px-6">
-        <div className="flex items-center justify-between mb-3">
-          <span className="inline-block px-4 py-1.5 bg-secondary/15 text-secondary rounded-full text-sm font-bold uppercase tracking-wide">
-            {course.category}
-          </span>
-          <span className="inline-flex items-center gap-1.5 px-3 py-1.5 bg-muted/80 text-muted-foreground rounded-full text-sm font-semibold">
-            {course.level}
-          </span>
+    <div className="group course-card relative bg-white border border-grey-100 rounded-[3rem] p-10 shadow-2xl hover:shadow-secondary/10 transition-all duration-700 hover:-translate-y-3 flex flex-col h-full overflow-hidden">
+      <div className="absolute top-0 left-0 w-2 h-full bg-grey-50 group-hover:bg-secondary transition-colors duration-500" />
+
+      <div className="flex items-center justify-between mb-8">
+        <span className={`px-4 py-1.5 rounded-full text-[10px] font-black uppercase tracking-widest text-white ${course.accent} shadow-lg`}>
+          {course.category}
+        </span>
+        <div className="flex items-center gap-2 text-primary/40 font-bold text-xs uppercase tracking-tighter">
+          <Clock className="w-4 h-4 text-secondary" />
+          <span>{course.duration}</span>
         </div>
-        <CardTitle className="text-2xl font-black text-foreground mb-4 leading-tight group-hover:text-secondary transition-colors duration-300">
-          {course.title}
-        </CardTitle>
-        <div className="flex items-center gap-2.5 text-base text-muted-foreground font-medium">
-          <Clock className="h-5 w-5 text-secondary" />
-          {course.duration}
-        </div>
-      </CardHeader>
-      <CardContent className="flex-1 flex flex-col px-6 pb-6">
-        <ul className="space-y-3 flex-1 mb-6">
-          {course.topics.map((topic, index) => (
-            <li key={index} className="flex items-start gap-3 text-base">
-              <CheckCircle2 className="h-5 w-5 text-secondary mt-0.5 flex-shrink-0" />
-              <span className="text-muted-foreground leading-relaxed">{topic}</span>
+      </div>
+
+      <h3 className="text-2xl md:text-3xl font-black text-primary mb-6 uppercase tracking-tighter leading-tight group-hover:text-secondary transition-colors">
+        {course.title}
+      </h3>
+
+      <div className="space-y-4 mb-10 flex-grow">
+        <p className="text-[10px] font-bold text-primary/30 uppercase tracking-[0.2em] mb-4">Core Modules</p>
+        <ul className="space-y-3">
+          {course.topics.map((topic, i) => (
+            <li key={i} className="flex items-center gap-3">
+              <div className="w-1.5 h-1.5 rounded-full bg-secondary/50 group-hover:scale-150 transition-transform duration-300" />
+              <span className="text-primary/60 text-sm font-medium leading-relaxed group-hover:text-primary transition-colors">{topic}</span>
             </li>
           ))}
         </ul>
-        <Button
-          asChild
-          size="lg"
-          className="group w-full bg-gradient-to-r from-secondary via-secondary to-secondary/90 text-secondary-foreground font-bold text-base py-6 rounded-2xl shadow-lg shadow-secondary/20 hover:shadow-xl hover:shadow-secondary/30 transition-all duration-500 hover:-translate-y-1 hover:scale-[1.02] overflow-hidden"
-        >
-          <Link to="/contact" className="flex items-center justify-center gap-2">
-            <span>Enroll Now</span>
-            <ArrowRight className="w-4 h-4 transition-transform duration-300 group-hover:translate-x-1" />
+      </div>
+
+      <div className="pt-6 border-t border-grey-50 mt-auto">
+        <Button asChild className="w-full h-14 bg-grey-50 hover:bg-secondary text-primary font-black rounded-2xl group/btn transition-all duration-500">
+          <Link to="/contact" className="flex items-center justify-between px-6">
+            <span className="text-xs uppercase tracking-widest">Enroll Now</span>
+            <ArrowRight className="w-4 h-4 transition-transform duration-300 group-hover/btn:translate-x-1" />
           </Link>
         </Button>
-      </CardContent>
-    </Card>
+      </div>
+    </div>
   );
 };
 
 const CourseCatalog = () => {
+  const containerRef = useRef(null);
+
+  useGSAP(() => {
+    gsap.from(".course-card", {
+      y: 60,
+      duration: 1,
+      stagger: 0.1,
+      ease: "power4.out",
+      scrollTrigger: {
+        trigger: containerRef.current,
+        start: "top 75%",
+      }
+    });
+  }, { scope: containerRef });
+
   return (
-    <section className="section-padding pt-24">
-      <div className="container mx-auto container-padding">
-        <div className="text-center max-w-3xl mx-auto mb-10">
-          <span className="inline-block px-4 py-2 bg-secondary/10 text-secondary rounded-full text-sm font-medium mb-3">
-            Our Courses
+    <section ref={containerRef} className="py-24 bg-grey-50 relative overflow-hidden">
+      <div className="container mx-auto px-6 relative z-10">
+        <div className="text-center max-w-3xl mx-auto mb-20">
+          <span className="inline-block px-4 py-1.5 bg-secondary/10 text-secondary rounded-full text-xs font-bold tracking-[0.2em] mb-4 uppercase border border-secondary/20">
+            Course Catalog
           </span>
-          <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-3">
-            Training Programs
+          <h2 className="text-4xl md:text-5xl font-black text-primary mb-6 uppercase tracking-tight">
+            Training <span className="text-secondary">Programs</span>
           </h2>
-          <p className="text-lg text-muted-foreground">
-            Choose from our comprehensive range of MEP engineering courses
-            tailored to different skill levels.
+          <p className="text-lg text-primary/60 leading-relaxed">
+            Meister the complexities of MEP engineering with our curriculum tailored for excellence in the modern industry.
           </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
           {courses.map((course, index) => (
             <CourseCard key={index} course={course} />
           ))}
@@ -238,135 +246,83 @@ const CourseCatalog = () => {
   );
 };
 
-// Custom Training Section
 const CustomTraining = () => {
-  return (
-    <section className="section-padding bg-gradient-to-br from-muted via-background to-muted/50 relative overflow-hidden">
-      {/* Premium background decorations */}
-      <div className="absolute inset-0 pointer-events-none">
-        <div className="absolute top-0 right-0 w-96 h-96 bg-secondary/5 rounded-full blur-3xl transform translate-x-1/2 -translate-y-1/2" />
-        <div className="absolute bottom-0 left-0 w-80 h-80 bg-primary/5 rounded-full blur-3xl transform -translate-x-1/2 translate-y-1/2" />
-      </div>
+  const containerRef = useRef(null);
 
-      <div className="container mx-auto container-padding relative z-10">
-        <div className="grid lg:grid-cols-2 gap-16 items-center">
-          {/* Left Content */}
-          <div className="space-y-8">
-            <div>
-              <span className="inline-flex items-center gap-2 px-5 py-2.5 bg-gradient-to-r from-secondary/15 to-secondary/5 text-secondary rounded-full text-sm font-semibold mb-5 border border-secondary/20 backdrop-blur-sm shadow-sm">
-                <span className="w-2 h-2 bg-secondary rounded-full animate-pulse" />
-                Tailored Solutions
-              </span>
-              <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-foreground mb-5 leading-tight">
-                Corporate Training
-                <span className="block bg-gradient-to-r from-secondary to-secondary/70 bg-clip-text text-transparent">
-                  Programs
-                </span>
+  useGSAP(() => {
+    gsap.from(".custom-reveal", {
+      x: -50,
+      duration: 1,
+      stagger: 0.2,
+      scrollTrigger: {
+        trigger: containerRef.current,
+        start: "top 75%"
+      }
+    });
+    gsap.from(".stats-card", {
+      scale: 0.9,
+      duration: 1,
+      stagger: 0.1,
+      ease: "back.out(1.7)",
+      scrollTrigger: {
+        trigger: containerRef.current,
+        start: "top 70%"
+      }
+    });
+  }, { scope: containerRef });
+
+  return (
+    <section ref={containerRef} className="py-32 bg-grey-50 relative overflow-hidden">
+      <div className="absolute top-1/2 left-0 w-full h-full pointer-events-none">
+        <div className="absolute top-1/2 -left-1/4 w-[800px] h-[800px] bg-secondary/5 rounded-full blur-[120px]" />
+      </div>
+      <div className="container mx-auto px-6 relative z-10">
+        <div className="grid lg:grid-cols-2 gap-24 items-center">
+          <div className="space-y-10">
+            <div className="custom-reveal">
+              <span className="text-sm font-bold tracking-[0.3em] text-secondary uppercase block mb-4">Tailored Solutions</span>
+              <h2 className="text-5xl md:text-7xl font-black text-primary uppercase tracking-tighter leading-[0.9] mb-8">
+                Corporate <br /> <span className="text-secondary">Excellence</span>
               </h2>
-              <p className="text-lg text-muted-foreground leading-relaxed">
-                We offer customized training solutions designed specifically for
-                your organization's needs. Our corporate training programs can be
-                delivered on-site or virtually, with content tailored to your
-                team's requirements.
+              <p className="text-lg text-primary/70 leading-relaxed font-medium max-w-xl">
+                We empower organizations with bespoke training solutions. Our experts deliver on-site and virtual programs designed for your specific project challenges.
               </p>
             </div>
 
-            <ul className="space-y-4">
-              {[
-                "Customized curriculum based on your needs",
-                "Flexible scheduling and delivery options",
-                "Team assessments and skill gap analysis",
-                "Post-training support and resources",
-              ].map((item, index) => (
-                <li
-                  key={index}
-                  className="flex items-center gap-4 p-4 rounded-xl bg-card/50 backdrop-blur-sm border border-border/50 hover:bg-card hover:border-secondary/30 hover:shadow-lg transition-all duration-300 group cursor-default"
-                >
-                  <div className="flex-shrink-0 w-10 h-10 rounded-full bg-secondary/10 flex items-center justify-center group-hover:bg-secondary/20 group-hover:scale-110 transition-all duration-300">
-                    <CheckCircle2 className="h-5 w-5 text-secondary" />
+            <div className="space-y-4 custom-reveal">
+              {["Customized Curriculum", "On-site Delivery", "Skill Gap Analysis", "Ongoing Support"].map((item, i) => (
+                <div key={i} className="flex items-center gap-4 group">
+                  <div className="w-10 h-10 rounded-full bg-secondary/10 flex items-center justify-center group-hover:bg-secondary transition-colors transition-duration-500">
+                    <CheckCircle2 className="h-5 w-5 text-secondary group-hover:text-white" />
                   </div>
-                  <span className="text-muted-foreground group-hover:text-foreground transition-colors duration-300 font-medium">
-                    {item}
-                  </span>
-                </li>
+                  <span className="text-primary font-black uppercase text-xs tracking-widest">{item}</span>
+                </div>
               ))}
-            </ul>
+            </div>
 
-            <Button
-              asChild
-              size="lg"
-              className="bg-gradient-to-r from-secondary to-secondary/90 hover:from-secondary/90 hover:to-secondary text-secondary-foreground font-bold px-8 py-6 rounded-xl shadow-lg hover:shadow-xl hover:shadow-secondary/20 transition-all duration-300 hover:-translate-y-0.5 group"
-            >
-              <Link to="/contact">
-                <Phone className="mr-3 h-5 w-5 group-hover:rotate-12 transition-transform duration-300" />
-                Request Custom Training
-              </Link>
-            </Button>
+            <div className="custom-reveal pt-4">
+              <Button asChild className="group relative bg-primary text-white font-black rounded-2xl px-12 h-16 text-xs tracking-widest uppercase shadow-xl hover:shadow-2xl transition-all duration-500 hover:-translate-y-1">
+                <Link to="/contact">
+                  <span>Inquire Now</span>
+                  <Phone className="ml-3 h-4 w-4 transition-transform duration-300 group-hover:rotate-12" />
+                </Link>
+              </Button>
+            </div>
           </div>
 
-          {/* Right Stats Grid */}
-          <div className="grid grid-cols-2 gap-5">
-            {/* Card 1: 20+ Courses */}
-            <Card className="group bg-card/80 backdrop-blur-md rounded-2xl border border-border/50 hover:border-secondary/40 shadow-lg hover:shadow-2xl hover:shadow-secondary/10 transition-all duration-500 hover:-translate-y-2 overflow-hidden">
-              <CardContent className="p-8 text-center relative">
-                <div className="absolute inset-0 bg-gradient-to-br from-secondary/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-                <div className="relative z-10">
-                  <div className="w-16 h-16 rounded-2xl bg-gradient-to-br from-secondary/20 to-secondary/5 flex items-center justify-center mx-auto mb-5 group-hover:scale-110 transition-transform duration-500 shadow-inner">
-                    <BookOpen className="h-8 w-8 text-secondary" />
-                  </div>
-                  <p className="font-bold text-2xl text-foreground mb-1 group-hover:text-secondary transition-colors duration-300">20+ Courses</p>
-                  <p className="text-sm text-muted-foreground font-medium">Available</p>
-                </div>
-              </CardContent>
-            </Card>
-
-            {/* Card 2: 1000+ Professionals */}
-            <Card className="group bg-gradient-to-br from-primary to-primary/90 text-primary-foreground rounded-2xl border-0 shadow-xl hover:shadow-2xl hover:shadow-primary/30 transition-all duration-500 hover:-translate-y-2 overflow-hidden">
-              <CardContent className="p-8 text-center relative">
-                <div className="absolute inset-0 bg-gradient-to-br from-white/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-                <div className="relative z-10">
-                  <div className="w-16 h-16 rounded-2xl bg-white/10 backdrop-blur-sm flex items-center justify-center mx-auto mb-5 group-hover:scale-110 transition-transform duration-500">
-                    <Users className="h-8 w-8 text-secondary" />
-                  </div>
-                  <p className="font-bold text-2xl mb-1">1000+</p>
-                  <p className="text-sm text-primary-foreground/70 font-medium">
-                    Professionals Trained
-                  </p>
-                </div>
-              </CardContent>
-            </Card>
-
-            {/* Card 3: Hands-on */}
-            <Card className="group bg-gradient-to-br from-primary to-primary/90 text-primary-foreground rounded-2xl border-0 shadow-xl hover:shadow-2xl hover:shadow-primary/30 transition-all duration-500 hover:-translate-y-2 overflow-hidden">
-              <CardContent className="p-8 text-center relative">
-                <div className="absolute inset-0 bg-gradient-to-br from-white/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-                <div className="relative z-10">
-                  <div className="w-16 h-16 rounded-2xl bg-white/10 backdrop-blur-sm flex items-center justify-center mx-auto mb-5 group-hover:scale-110 group-hover:rotate-6 transition-all duration-500">
-                    <Wrench className="h-8 w-8 text-secondary" />
-                  </div>
-                  <p className="font-bold text-2xl mb-1">Hands-on</p>
-                  <p className="text-sm text-primary-foreground/70 font-medium">
-                    Practical Training
-                  </p>
-                </div>
-              </CardContent>
-            </Card>
-
-            {/* Card 4: 100% Job-Relevant */}
-            <Card className="group bg-card/80 backdrop-blur-md rounded-2xl border border-border/50 hover:border-secondary/40 shadow-lg hover:shadow-2xl hover:shadow-secondary/10 transition-all duration-500 hover:-translate-y-2 overflow-hidden">
-              <CardContent className="p-8 text-center relative">
-                <div className="absolute inset-0 bg-gradient-to-br from-secondary/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-                <div className="relative z-10">
-                  <div className="w-16 h-16 rounded-2xl bg-gradient-to-br from-secondary/20 to-secondary/5 flex items-center justify-center mx-auto mb-5 group-hover:scale-110 transition-transform duration-500 shadow-inner">
-                    <Target className="h-8 w-8 text-secondary" />
-                  </div>
-                  <p className="font-bold text-2xl text-foreground mb-1 group-hover:text-secondary transition-colors duration-300">100%</p>
-                  <p className="text-sm text-muted-foreground font-medium">
-                    Job-Relevant Skills
-                  </p>
-                </div>
-              </CardContent>
-            </Card>
+          <div className="grid grid-cols-2 gap-6">
+            {[
+              { label: "Courses", val: "20+", icon: BookOpen },
+              { label: "Graduates", val: "1k+", icon: Users },
+              { label: "Focus", val: "Applied", icon: Wrench },
+              { label: "Relevance", val: "100%", icon: Target },
+            ].map((stat, i) => (
+              <div key={i} className="stats-card p-10 bg-grey-50 rounded-[3rem] text-center border border-grey-100 hover:scale-105 transition-all duration-500">
+                <stat.icon className="w-10 h-10 text-secondary mx-auto mb-6" />
+                <p className="text-4xl font-black text-primary leading-none mb-2 tracking-tighter">{stat.val}</p>
+                <p className="text-[10px] font-bold text-primary/40 uppercase tracking-[0.2em]">{stat.label}</p>
+              </div>
+            ))}
           </div>
         </div>
       </div>
@@ -374,41 +330,37 @@ const CustomTraining = () => {
   );
 };
 
-// CTA Section
 const CTASection = () => {
   return (
-    <section className="pt-10 pb-10">
-      <div className="container mx-auto px6">
-        <div className="gradient-hero rounded-[3rem] p-12 md:p-20 text-center">
-          <h2 className="text-4xl md:text-6xl font-black text-primary-foreground uppercase tracking-tighter leading-none mb-6">
-            Ready to Advance Your Career?
-          </h2>
-          <p className="text-lg text-primary-foreground/80 mb-8 max-w-2xl mx-auto leading-relaxed">
-            Join our next training session and gain the skills needed to excel
-            in MEP engineering.
-          </p>
-          <div className="flex flex-col sm:flex-row gap-6 justify-center">
-            <Button
-              asChild
-              size="lg"
-              className="group relative bg-gradient-to-r from-secondary via-secondary to-secondary/90 text-secondary-foreground font-black rounded-2xl px-12 h-16 text-xs tracking-widest uppercase shadow-xl shadow-secondary/30 hover:shadow-2xl hover:shadow-secondary/40 transition-all duration-500 hover:-translate-y-1 hover:scale-105 overflow-hidden"
-            >
-              <Link to="/contact" className="flex items-center gap-3">
-                <span>Contact Us to Enroll</span>
-                <ArrowRight className="w-4 h-4 transition-transform duration-300 group-hover:translate-x-1" />
-              </Link>
-            </Button>
-            <Button
-              asChild
-              size="lg"
-              variant="outline"
-              className="group relative bg-transparent border-2 border-primary-foreground/30 text-primary-foreground hover:bg-primary-foreground/10 font-black rounded-2xl px-12 h-16 text-xs tracking-widest uppercase backdrop-blur-sm transition-all duration-500 hover:-translate-y-1 hover:scale-105"
-            >
-              <a href="tel:+971501234567" className="flex items-center gap-3">
-                <Phone className="w-4 h-4 transition-transform duration-300 group-hover:rotate-12" />
-                <span>Call: +971 50 123 4567</span>
-              </a>
-            </Button>
+    <section className="py-24 bg-grey-50">
+      <div className="container mx-auto px-6">
+        <div className="rounded-[3.5rem] p-12 md:p-24 text-center relative overflow-hidden group">
+          <div className="absolute inset-0 bg-gradient-to-br from-primary via-primary to-black" />
+          <div className="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/carbon-fibre.png')] opacity-20" />
+
+          <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-secondary/20 rounded-full blur-[120px] -translate-y-1/2 translate-x-1/2" />
+
+          <div className="relative z-10 max-w-4xl mx-auto space-y-10">
+            <span className="inline-block px-4 py-1.5 bg-white/10 text-white rounded-full text-xs font-bold uppercase tracking-widest backdrop-blur-md border border-white/20">
+              Training & Career
+            </span>
+            <h2 className="text-4xl md:text-7xl font-black text-white uppercase tracking-tighter leading-none">
+              Ready to Advance <br /><span className="text-secondary">Your Career?</span>
+            </h2>
+            <div className="flex flex-col sm:flex-row gap-6 justify-center pt-4">
+              <Button asChild className="group relative bg-white text-primary font-black rounded-2xl px-12 h-16 text-xs tracking-widest uppercase shadow-xl hover:shadow-2xl transition-all duration-500 hover:-translate-y-1 hover:scale-105">
+                <Link to="/contact" className="flex items-center gap-3">
+                  <span>Enroll Today</span>
+                  <ArrowRight className="w-4 h-4 text-secondary transition-transform duration-300 group-hover:translate-x-1" />
+                </Link>
+              </Button>
+              <Button asChild className="group relative bg-white text-primary font-black rounded-2xl px-12 h-16 text-xs tracking-widest uppercase shadow-xl hover:shadow-2xl transition-all duration-500 hover:-translate-y-1 hover:scale-105">
+                <a href="tel:+971501234567" className="flex items-center gap-3">
+                  <Phone className="w-4 h-4 text-secondary transition-transform duration-300 group-hover:rotate-12" />
+                  <span>Call Admission</span>
+                </a>
+              </Button>
+            </div>
           </div>
         </div>
       </div>
@@ -416,7 +368,6 @@ const CTASection = () => {
   );
 };
 
-// Main Training Page Component
 const Training = () => {
   return (
     <Layout>
@@ -428,11 +379,11 @@ const Training = () => {
         backgroundImage={trainingHeroBg}
         variant="clean"
       />
-      <div className="relative z-30">
-        <CourseCatalog />
-        <CustomTraining />
-        <CTASection />
-      </div>
+
+      <BenefitsSection />
+      <CourseCatalog />
+      <CustomTraining />
+      <CTASection />
     </Layout>
   );
 };

@@ -10,8 +10,15 @@ import Training from "./pages/Training";
 import Projects from "./pages/Projects";
 import Contact from "./pages/Contact";
 import NotFound from "./pages/NotFound";
+import AdminLogin from "./pages/admin/Login";
+import AdminLayout from "./pages/admin/Layout";
+import AdminDashboard from "./pages/admin/Dashboard";
+import AdminProjects from "./pages/admin/Projects";
+import AdminServices from "./pages/admin/Services";
 
 const queryClient = new QueryClient();
+
+import ScrollToTop from "@/components/layout/ScrollToTop";
 
 const App = () => (
   <QueryClientProvider client={queryClient}>
@@ -19,6 +26,7 @@ const App = () => (
       <Toaster />
       <Sonner />
       <BrowserRouter>
+        <ScrollToTop />
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/about" element={<About />} />
@@ -26,7 +34,15 @@ const App = () => (
           <Route path="/training" element={<Training />} />
           <Route path="/projects" element={<Projects />} />
           <Route path="/contact" element={<Contact />} />
-          {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
+
+          {/* Admin Routes */}
+          <Route path="/admin/login" element={<AdminLogin />} />
+          <Route path="/admin" element={<AdminLayout />}>
+            <Route index element={<AdminDashboard />} />
+            <Route path="projects" element={<AdminProjects />} />
+            <Route path="services" element={<AdminServices />} />
+          </Route>
+
           <Route path="*" element={<NotFound />} />
         </Routes>
       </BrowserRouter>

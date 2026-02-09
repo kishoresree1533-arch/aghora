@@ -405,7 +405,7 @@ const ServicesSection = () => {
           <span className="text-sm font-bold tracking-[0.3em] text-secondary uppercase block">
             Our Expertise
           </span>
-          <h2 className="text-5xl md:text-7xl font-black text-primary uppercase tracking-tighter leading-none">
+          <h2 className="text-4xl md:text-6xl font-black text-primary uppercase tracking-tighter leading-none">
             Delivering Engineering <span className="text-secondary">Excellence</span>
           </h2>
           <p className="text-lg text-primary/50 font-medium">

@@ -18,9 +18,9 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useGSAP } from "@gsap/react";
 import Layout from "@/components/layout/Layout";
 import PageHero from "@/components/ui/PageHero";
-import { getData, initialServices } from "@/lib/data-store";
+import { getData, initialServices, syncServices } from "@/lib/data-store";
+import serviceHeroBg from "@/assets/service.jpg";
 
-import servicesHeroBg from "@/assets/services-hero-bg.jpg";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -33,7 +33,11 @@ const ServicesList = () => {
   const containerRef = useRef(null);
 
   useEffect(() => {
-    setServicesData(getData("services", initialServices));
+    const loadData = async () => {
+      const data = await syncServices();
+      setServicesData(data);
+    };
+    loadData();
   }, []);
 
   useGSAP(() => {
@@ -156,7 +160,7 @@ const Services = () => {
         title="Comprehensive Services"
         subtitle="Integrated Solutions"
         description="End-to-end MEP engineering services tailored to modern regulatory standards."
-        backgroundImage="/src/assets/services-hero-bg.jpg"
+        backgroundImage={serviceHeroBg}
         variant="clean"
       />
       <ServicesList />

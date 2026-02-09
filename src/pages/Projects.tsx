@@ -18,7 +18,7 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useGSAP } from "@gsap/react";
 import Layout from "@/components/layout/Layout";
 import PageHero from "@/components/ui/PageHero";
-import { getData, initialProjects, initialServices } from "@/lib/data-store";
+import { getData, initialProjects, initialServices, syncProjects, syncServices } from "@/lib/data-store";
 import * as LucideIcons from "lucide-react";
 
 import projectsHeroBg from "@/assets/projects-hero-new.jpg";
@@ -172,21 +172,23 @@ const ProjectsGrid = () => {
   const projectsRef = useRef(null);
 
   useEffect(() => {
-    const fetchedProjects = getData("projects", initialProjects);
-    const fetchedServices = getData("services", initialServices);
+    const loadData = async () => {
+      const projectsData = await syncProjects();
+      const servicesData = await syncServices();
+      setProjects(projectsData);
+      setServices(servicesData);
 
-    setProjects(fetchedProjects);
-    setServices(fetchedServices);
-
-    const cats = [
-      { id: "all", label: "All Projects", icon: LucideIcons.Building2 },
-      ...fetchedServices.map((s: any) => ({
-        id: s.id,
-        label: s.title.split(' ')[0], // Use first word for filter button
-        icon: getIcon(s.icon)
-      }))
-    ];
-    setDynamicCategories(cats);
+      const cats = [
+        { id: "all", label: "All Projects", icon: LucideIcons.Building2 },
+        ...servicesData.map((s: any) => ({
+          id: s.id,
+          label: s.title.split(' ')[0],
+          icon: getIcon(s.icon)
+        }))
+      ];
+      setDynamicCategories(cats);
+    };
+    loadData();
   }, []);
 
   const filteredProjects = activeCategory === "all"

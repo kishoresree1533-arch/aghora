@@ -3,7 +3,7 @@ import { Link, useLocation } from "react-router-dom";
 import { Menu, Building2, ArrowRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
-// import logo from "@/assets/logo.png"; // Removed as per instruction
+import logo from "@/assets/logo.png";
 
 const navLinks = [
   { name: "HOME", path: "/" },
@@ -39,14 +39,13 @@ const Header = () => {
       <div className="container mx-auto px-6 lg:px-12">
         <div className="flex items-center justify-between h-20">
           {/* Logo */}
-          <Link to="/" className="flex items-center gap-3 group">
-            <div className="flex flex-col">
-              <div className="flex items-center gap-1.5">
-                <span className={`text-4xl font-extrabold tracking-tighter leading-none transition-colors uppercase ${isScrolled ? "text-primary" : "text-white"}`}>Aec</span>
-                <span className="text-4xl font-extrabold text-secondary tracking-tighter leading-none transition-colors uppercase">Aghora</span>
-              </div>
-              <span className={`text-[0.6rem] font-bold tracking-[0.2em] leading-none uppercase mt-1.5 ${isScrolled ? "text-primary/60" : "text-white/70"}`}>MEP ENGINEERING CONSULTANTS</span>
-            </div>
+          <Link to="/" className="flex flex-col items-center gap-1 group">
+            <img
+              src={logo}
+              alt="Aghora Logo"
+              className={`h-12 w-auto transition-all duration-300 ${!isScrolled ? "brightness-0 invert" : ""}`}
+            />
+            <span className={`text-[0.55rem] font-bold tracking-[0.1em] uppercase whitespace-nowrap transition-colors ${isScrolled ? "text-primary" : "text-white"}`}>Aghora Engineering Consultant</span>
           </Link>
 
           {/* Desktop Navigation */}
@@ -91,13 +90,15 @@ const Header = () => {
                 <div className="p-10 border-b border-white/5">
                   <Link
                     to="/"
-                    className="flex flex-col"
+                    className="flex flex-col items-center gap-2"
                     onClick={() => setIsMobileMenuOpen(false)}
                   >
-                    <div className="flex items-center gap-2">
-                      <span className="text-3xl font-black tracking-tighter uppercase whitespace-nowrap">Aec</span>
-                      <span className="text-3xl font-black text-secondary tracking-tighter uppercase whitespace-nowrap">Aghora</span>
-                    </div>
+                    <img
+                      src={logo}
+                      alt="Aghora Logo"
+                      className="h-10 w-auto brightness-0 invert"
+                    />
+                    <span className="text-[0.6rem] font-bold tracking-[0.15em] uppercase text-white/80">Aghora Engineering Consultant</span>
                   </Link>
                 </div>
 

@@ -7,6 +7,8 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Lock, ShieldCheck, Zap, ArrowRight, Shield } from "lucide-react";
 import { toast } from "sonner";
 
+import logo from "@/assets/logo.png";
+
 const AdminLogin = () => {
     const [password, setPassword] = useState("");
     const { login } = useAuth();
@@ -35,11 +37,16 @@ const AdminLogin = () => {
 
             <div className="w-full max-w-[440px] relative z-10 animate-in fade-in zoom-in-95 duration-1000 ease-out">
                 {/* Brand Identity Above Card */}
-                <div className="flex flex-col items-center mb-10">
-                    <div className="w-20 h-20 bg-gradient-to-tr from-blue-600 to-indigo-500 rounded-[28px] flex items-center justify-center shadow-[0_20px_40px_rgba(37,99,235,0.3)] mb-6 ring-4 ring-white/10 group">
-                        <Shield className="w-10 h-10 text-white transition-transform group-hover:scale-110" />
+                <div className="flex flex-col items-center mb-10 text-center">
+                    <div className="flex flex-col items-center gap-2 mb-6">
+                        <img
+                            src={logo}
+                            alt="Aghora Logo"
+                            className="h-16 w-auto brightness-0 invert"
+                        />
+                        <span className="text-[0.7rem] font-bold tracking-[0.2em] uppercase text-white/40">Aghora Engineering Consultant</span>
                     </div>
-                    <h1 className="text-3xl font-[950] text-white tracking-tight uppercase leading-none">Aghora <span className="text-blue-500">Hub</span></h1>
+                    <h1 className="text-3xl font-[950] text-white tracking-tight uppercase leading-none">Aghora Hub</h1>
                     <div className="flex items-center gap-3 mt-4">
                         <div className="w-1.5 h-1.5 rounded-full bg-blue-500 animate-pulse" />
                         <p className="text-[10px] font-black uppercase tracking-[0.4em] text-slate-500">Admin Login</p>

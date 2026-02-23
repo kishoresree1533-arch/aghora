@@ -36,13 +36,13 @@ const Footer = () => {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-16">
           {/* Company Info */}
           <div className="space-y-8">
-            <Link to="/" className="inline-block">
-              <div className="flex flex-col">
-                <div className="flex items-center gap-1.5">
-                  <span className="text-3xl font-extrabold text-white tracking-tighter uppercase">Aec</span>
-                  <span className="text-3xl font-extrabold text-secondary tracking-tighter uppercase">Aghora</span>
-                </div>
-              </div>
+            <Link to="/" className="flex flex-col items-start gap-2 group">
+              <img
+                src={logo}
+                alt="Aghora Logo"
+                className="h-10 w-auto brightness-0 invert"
+              />
+              <span className="text-[0.6rem] font-bold tracking-[0.1em] uppercase text-white/50">Aghora Engineering Consultant</span>
             </Link>
             <p className="text-white/60 text-sm leading-loose max-w-sm">
               Where Innovation is Engineered. Your trusted partner for

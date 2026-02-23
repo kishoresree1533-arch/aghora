@@ -18,6 +18,8 @@ import {
 import { Button } from "@/components/ui/button";
 import { toast } from "sonner";
 
+import logo from "@/assets/logo.png";
+
 const AdminLayout = () => {
     const { isAuthenticated, isLoading, logout } = useAuth();
     const navigate = useNavigate();
@@ -34,7 +36,9 @@ const AdminLayout = () => {
         <div className="min-h-screen flex items-center justify-center bg-[#0F172A]">
             <div className="relative">
                 <div className="w-16 h-16 border-4 border-blue-500/20 border-t-blue-500 rounded-full animate-spin" />
-                <div className="absolute inset-0 flex items-center justify-center text-blue-500 font-bold text-xs">A</div>
+                <div className="absolute inset-0 flex items-center justify-center text-blue-500 font-bold text-xs">
+                    <img src={logo} alt="A" className="w-8 h-auto brightness-0 invert" />
+                </div>
             </div>
         </div>
     );
@@ -61,15 +65,20 @@ const AdminLayout = () => {
                     } bg-[#141B2D] text-white transition-all duration-500 ease-[cubic-bezier(0.23,1,0.32,1)] flex flex-col z-50 sticky top-0 h-screen overflow-y-auto no-scrollbar shadow-[20px_0_60px_-15px_rgba(0,0,0,0.1)]`}
             >
                 {/* Sidebar Brand Logo */}
-                <div className="p-8 pb-10">
-                    <Link to="/" className="flex items-center gap-4 group">
-                        <div className="w-11 h-11 bg-gradient-to-tr from-blue-600 to-cyan-400 rounded-[14px] flex items-center justify-center shrink-0 shadow-lg shadow-blue-500/30 group-hover:rotate-[10deg] transition-transform duration-500">
-                            <span className="font-black text-white text-xl">A</span>
-                        </div>
+                <div className="p-8 pb-10 border-b border-white/5">
+                    <Link to="/" className={`flex flex-col gap-3 group ${!isSidebarOpen && "items-center"}`}>
+                        <img
+                            src={logo}
+                            alt="Aghora Logo"
+                            className={`h-8 w-auto transition-all duration-300 brightness-0 invert ${!isSidebarOpen && "lg:h-6"}`}
+                        />
                         {isSidebarOpen && (
                             <div className="flex flex-col">
-                                <span className="font-black text-[15px] tracking-[0.1em] uppercase leading-none text-white whitespace-nowrap">Aghora Hub</span>
-                                <span className="text-[10px] font-bold tracking-[0.2em] text-blue-400 uppercase leading-none mt-1.5 opacity-80">Admin Center</span>
+                                <span className="text-[0.5rem] font-bold tracking-[0.1em] text-white/40 uppercase leading-none mb-4">Aghora Engineering Consultant</span>
+                                <div className="flex flex-col">
+                                    <span className="font-black text-[15px] tracking-[0.1em] uppercase leading-none text-white whitespace-nowrap">Aghora Hub</span>
+                                    <span className="text-[10px] font-bold tracking-[0.2em] text-blue-400 uppercase leading-none mt-1.5 opacity-80">Admin Center</span>
+                                </div>
                             </div>
                         )}
                     </Link>

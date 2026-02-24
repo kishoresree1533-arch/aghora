@@ -30,7 +30,7 @@ const PageHero = ({
     variant = "default"
 }: PageHeroProps) => {
     return (
-        <section className="relative h-screen flex items-start justify-center overflow-hidden pt-40">
+        <section className="relative h-[75vh] min-h-[420px] flex items-start justify-center overflow-hidden pt-36">
             {/* Full-width Background Image */}
             <div className="absolute inset-0 z-0">
                 <img

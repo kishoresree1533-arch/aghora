@@ -153,13 +153,24 @@ const ProcessSection = () => {
 };
 
 const Services = () => {
+  useEffect(() => {
+    // Force a one-time clear of cached services to ensure new technical copy reflects
+    localStorage.removeItem("services");
+
+    document.title = "MEP Engineering Services | Integrated HVAC, Electrical & Plumbing";
+    const metaDescription = document.querySelector('meta[name="description"]');
+    if (metaDescription) {
+      metaDescription.setAttribute("content", "Aghora Engineering Consultant provides end-to-end MEP engineering services including HVAC, Electrical, Plumbing, Fire Protection, and ELV solutions focused on energy efficiency and safety.");
+    }
+  }, []);
+
   return (
     <Layout>
       <PageHero
-        badge="Our Expertise"
-        title="Comprehensive Services"
-        subtitle="Integrated Solutions"
-        description="End-to-end MEP engineering services tailored to modern regulatory standards."
+        badge="MEP Engineering Consultants"
+        title="Integrated HVAC,"
+        subtitle="Electrical & Plumbing Design Solutions"
+        description="We provide end-to-end MEP engineering services focused on energy efficiency, safety compliance, and high-performance building systems."
         backgroundImage={serviceHeroBg}
         variant="clean"
       />

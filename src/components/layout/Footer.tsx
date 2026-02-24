@@ -45,9 +45,8 @@ const Footer = () => {
               <span className="text-[0.6rem] font-bold tracking-[0.1em] uppercase text-white/50">Aghora Engineering Consultant</span>
             </Link>
             <p className="text-white/60 text-sm leading-loose max-w-sm">
-              Where Innovation is Engineered. Your trusted partner for
-              comprehensive MEP engineering solutions, delivering excellence in
-              HVAC, Electrical, PHE, Fire Protection (FPS) & ELV systems.
+              <span className="text-white font-black block mb-2">Where Innovation is Engineered</span>
+              At Aghora Engineering Consultant (AEC), we deliver innovative and reliable MEP engineering solutions designed to power modern infrastructure. As a trusted MEP consultant in Coimbatore, we specialize in providing end-to-end Mechanical, Electrical, and Plumbing (MEP) services for commercial, residential, industrial, and institutional projects with a commitment to quality, efficiency, and technical excellence, we transform complex engineering challenges into sustainable, high-performance solutions.
             </p>
             <div className="flex gap-4">
               {[

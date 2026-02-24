@@ -87,9 +87,9 @@ export const initialServices = [
     {
         id: "hvac",
         icon: "Wind",
-        title: "HVAC Systems Design",
-        subtitle: "Climate Control Excellence",
-        description: "Our HVAC engineering team designs innovative heating, ventilation, and air conditioning systems that optimize comfort, energy efficiency, and indoor air quality for all building types.",
+        title: "HVAC SYSTEMS DESIGN",
+        subtitle: "CLIMATE CONTROL EXCELLENCE",
+        description: "We provide professional HVAC system design services tailored for commercial, industrial, and residential buildings. Our expert HVAC engineering team delivers energy-efficient heating, ventilation, and air conditioning solutions that enhance indoor comfort, improve air quality, and reduce operational costs.",
         image: getAsset("hvac-engineering-latest.jpg"),
         capabilities: [
             "Central air conditioning systems",
@@ -104,9 +104,9 @@ export const initialServices = [
     {
         id: "electrical",
         icon: "Zap",
-        title: "Electrical Engineering",
+        title: "ELECTRICAL ENGINEERING",
         subtitle: "Power Your Vision",
-        description: "We deliver comprehensive electrical engineering solutions that ensure reliable power distribution, safety, and efficiency for commercial, industrial, and residential projects.",
+        description: "We provide end-to-end electrical engineering solutions designed to deliver safe, efficient, and dependable power systems. Our expertise covers commercial, industrial, and residential projects, ensuring optimal performance, regulatory compliance, and long-term reliability",
         image: getAsset("innovative-engineering.jpg"),
         capabilities: [
             "High and low voltage distribution",
@@ -119,9 +119,9 @@ export const initialServices = [
     {
         id: "plumbing",
         icon: "Droplets",
-        title: "Plumbing & Drainage",
+        title: "PLUMBING & DRAINAGE",
         subtitle: "Sustainable Water Solutions",
-        description: "Our plumbing engineers design efficient water supply and drainage systems that conserve resources while meeting the highest standards of hygiene and performance.",
+        description: "We provide expert plumbing and drainage system design services for commercial, industrial, and residential buildings. Our engineering approach focuses on water efficiency, sustainability, and compliance with health and safety standards.",
         image: getAsset("phe-engineering-latest.jpg"),
         capabilities: [
             "Domestic water supply systems",
@@ -134,9 +134,9 @@ export const initialServices = [
     {
         id: "fire",
         icon: "Flame",
-        title: "Fire Protection Systems",
-        subtitle: "Life Safety First",
-        description: "We design comprehensive fire protection systems that safeguard lives and property through advanced detection, suppression, and evacuation solutions.",
+        title: "FIRE PROTECTION SYSTEMS",
+        subtitle: "LIFE SAFETY FIRST",
+        description: "We design and deliver comprehensive fire protection solutions that protect lives, assets, and infrastructure. Our systems combine advanced detection, suppression, and evacuation technologies to ensure rapid response and maximum safety in critical situations.",
         image: getAsset("Fire Protection.jpg"),
         capabilities: [
             "Fire detection and alarm systems",
@@ -149,9 +149,9 @@ export const initialServices = [
     {
         id: "elv",
         icon: "Shield",
-        title: "ELV Systems",
-        subtitle: "Smart Building Integration",
-        description: "Our Extra Low Voltage systems expertise covers the full spectrum of building technology, creating intelligent environments that enhance security, communication, and comfort.",
+        title: "ELV SYSTEMS",
+        subtitle: "SMART BUILDING INTEGRATION",
+        description: "We deliver advanced Extra Low Voltage (ELV) solutions that power intelligent, secure, and seamlessly connected buildings. Our integrated systems enhance operational efficiency, strengthen security, and improve overall user experience across commercial, industrial, and residential environments.",
         image: getAsset("elv-engineering-latest.jpg"),
         capabilities: [
             "Building Management Systems (BMS)",

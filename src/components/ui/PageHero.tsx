@@ -30,7 +30,7 @@ const PageHero = ({
     variant = "default"
 }: PageHeroProps) => {
     return (
-        <section className="relative h-[70vh] flex items-center justify-center overflow-hidden">
+        <section className="relative h-screen flex items-start justify-center overflow-hidden pt-40">
             {/* Full-width Background Image */}
             <div className="absolute inset-0 z-0">
                 <img
@@ -45,16 +45,16 @@ const PageHero = ({
                 )}
             </div>
 
-            <div className="container mx-auto px-6 relative z-10 text-center pt-20">
+            <div className="container mx-auto px-6 relative z-10 text-center pb-20">
                 {badge && (
-                    <div className="inline-flex items-center gap-2 px-4 py-2 bg-secondary/20 backdrop-blur-md rounded-full mb-8 border border-secondary/30 animate-fade-in">
-                        <span className="text-[0.65rem] font-bold tracking-[0.4em] text-secondary uppercase">
+                    <div className="inline-flex items-center gap-2 px-4 py-2 bg-white/10 backdrop-blur-md rounded-full mb-8 border border-white/30 animate-fade-in">
+                        <span className="text-[0.65rem] font-bold tracking-[0.4em] text-white uppercase">
                             {badge}
                         </span>
                     </div>
                 )}
 
-                <h1 className="text-4xl md:text-7xl font-black text-white mb-8 leading-tight tracking-tighter uppercase max-w-5xl mx-auto">
+                <h1 className="text-4xl md:text-7xl font-black text-white mb-6 leading-tight tracking-tighter uppercase max-w-5xl mx-auto">
                     {subtitle ? (
                         <>
                             {title} <br />
@@ -80,7 +80,7 @@ const PageHero = ({
                 </h1>
 
                 {description && (
-                    <p className="text-lg md:text-xl text-white/80 mb-12 max-w-2xl mx-auto leading-relaxed font-medium animate-fade-in animation-delay-200">
+                    <p className="text-lg md:text-xl text-white/80 mb-8 max-w-2xl mx-auto leading-relaxed font-medium animate-fade-in animation-delay-200">
                         {description}
                     </p>
                 )}

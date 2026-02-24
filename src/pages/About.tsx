@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { useRef } from "react";
+import { useRef, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import {
@@ -33,6 +33,14 @@ import PageHero from "@/components/ui/PageHero";
 
 // Main About Page Component
 const About = () => {
+  useEffect(() => {
+    document.title = "About Aghora Engineering Consultant | Trusted MEP Consultant";
+    const metaDescription = document.querySelector('meta[name="description"]');
+    if (metaDescription) {
+      metaDescription.setAttribute("content", "Learn about Aghora Engineering Consultant, your trusted MEP engineering partner in Coimbatore. Discover our expertise in HVAC, Electrical, PHE, Fire Protection & ELV systems, and our commitment to innovation, quality, and sustainable engineering solutions. MEP");
+    }
+  }, []);
+
   return (
     <Layout>
       <PageHero
@@ -81,13 +89,14 @@ const CompanyOverviewSection = () => {
                 Company Overview
               </span>
               <h2 className="text-5xl md:text-6xl font-black text-primary uppercase tracking-tighter leading-tight mb-6 mt-2 reveal-text">
-                Professionally <br /> Driven <span className="text-secondary">Excellence</span>
+                MEP Engineering <br /> <span className="text-secondary">Excellence</span>
               </h2>
               <div className="w-24 h-1.5 bg-secondary rounded-full reveal-text" />
             </div>
 
             <p className="text-xl text-primary/70 leading-relaxed font-medium reveal-text">
-              Aghora Engineering MEP Consultants is a professionally driven MEP engineering consultancy delivering integrated engineering solutions with a strong focus on quality, safety, and performance.
+              <span className="text-primary font-black block mb-4">Where Innovation is Engineered</span>
+              At Aghora Engineering Consultant (AEC), we deliver innovative and reliable MEP engineering solutions designed to power modern infrastructure. As a trusted MEP consultant in Coimbatore, we specialize in providing end-to-end Mechanical, Electrical, and Plumbing (MEP) services for commercial, residential, industrial, and institutional projects with a commitment to quality, efficiency, and technical excellence, we transform complex engineering challenges into sustainable, high-performance solutions.
             </p>
             <p className="text-lg text-primary/60 leading-relaxed reveal-text">
               Established on <strong className="text-primary">May 28, 2015</strong>, in Coimbatore, the firm has grown into a trusted name for comprehensive Mechanical, Electrical, Plumbing, Fire Protection, and ELV engineering services.

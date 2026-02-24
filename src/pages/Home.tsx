@@ -62,7 +62,7 @@ const HeroSection = () => {
   const heroImage = homeHeroBg;
 
   return (
-    <section className="relative h-screen flex items-center justify-center overflow-hidden">
+    <section className="relative h-screen flex items-start justify-center overflow-hidden pt-40">
       {/* Full-width Background Image */}
       <div className="absolute inset-0 z-0">
         <img
@@ -73,14 +73,14 @@ const HeroSection = () => {
         <div className="absolute inset-0 bg-primary/60 backdrop-blur-[2px]" />
       </div>
 
-      <div className="container mx-auto px-6 relative z-10 text-center pt-32 md:pt-40">
-        <div className="inline-flex items-center gap-2 px-4 py-2 bg-secondary/20 backdrop-blur-md rounded-full mb-8 border border-secondary/30">
-          <span className="text-[0.65rem] font-bold tracking-[0.4em] text-secondary uppercase">
+      <div className="container mx-auto px-6 relative z-10 text-center">
+        <div className="inline-flex items-center gap-2 px-4 py-2 bg-white/10 backdrop-blur-md rounded-full mb-8 border border-white/30 animate-fade-in">
+          <span className="text-[0.65rem] font-bold tracking-[0.4em] text-white uppercase">
             Excellence in Engineering
           </span>
         </div>
 
-        <h1 className="text-5xl md:text-8xl font-black text-white mb-8 leading-tight tracking-tighter uppercase max-w-5xl mx-auto">
+        <h1 className="text-5xl md:text-8xl font-black text-white mb-6 leading-tight tracking-tighter uppercase max-w-5xl mx-auto">
           Building Your <br />
           <SplitText
             text="Vision"
@@ -92,7 +92,7 @@ const HeroSection = () => {
           />
         </h1>
 
-        <p className="text-lg md:text-xl text-white/80 mb-12 max-w-2xl mx-auto leading-relaxed font-medium">
+        <p className="text-lg md:text-xl text-white/80 mb-8 max-w-2xl mx-auto leading-relaxed font-medium">
           From your dreams to reality, we deliver premium MEP engineering solutions
           with precision, quality, and integrity.
         </p>
@@ -294,10 +294,8 @@ const AboutSection = () => {
             </div>
 
             <p className="text-lg text-primary/70 leading-loose">
-              "Where Innovation is Engineered." At AGHORA, we specialize in providing
-              comprehensive MEP Engineering solutions. Our approach focuses on seamless
-              integration, energy efficiency, and uncompromising quality across commercial
-              and industrial domains.
+              <span className="text-primary font-black block mb-2">Where Innovation is Engineered</span>
+              At Aghora Engineering Consultant (AEC), we deliver innovative and reliable MEP engineering solutions designed to power modern infrastructure. As a trusted MEP consultant in Coimbatore, we specialize in providing end-to-end Mechanical, Electrical, and Plumbing (MEP) services for commercial, residential, industrial, and institutional projects with a commitment to quality, efficiency, and technical excellence, we transform complex engineering challenges into sustainable, high-performance solutions.
             </p>
 
             <div className="grid sm:grid-cols-2 gap-8">
@@ -790,6 +788,14 @@ const TargetIcon = (props: any) => (
 
 // --- MAIN HOME PAGE COMPONENT ---
 const Home = () => {
+  useEffect(() => {
+    document.title = "MEP Engineering Consultants | HVAC, Electrical & Plumbing";
+    const metaDescription = document.querySelector('meta[name="description"]');
+    if (metaDescription) {
+      metaDescription.setAttribute("content", "Expert MEP engineering consultants offering HVAC, electrical, and plumbing design solutions. Reliable, efficient, and sustainable engineering services. AGHORA");
+    }
+  }, []);
+
   return (
     <Layout>
       <HeroSection />

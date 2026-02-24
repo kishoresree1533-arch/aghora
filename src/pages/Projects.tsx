@@ -254,7 +254,7 @@ const StatisticsSection = () => {
             { label: "Projects Completed", val: "250+" },
             { label: "Key Clients", val: "85+" },
             { label: "Technical Experts", val: "45+" },
-            { label: "Years Experience", val: "15+" },
+            { label: "Years Experience", val: "12+" },
           ].map((stat, i) => (
             <div key={i} className="space-y-4">
               <div className="text-5xl md:text-6xl font-black text-secondary tracking-tighter">{stat.val}</div>
@@ -285,13 +285,21 @@ const CTASection = () => {
 };
 
 const Projects = () => {
+  useEffect(() => {
+    document.title = "MEP Engineering Projects | Aghora Engineering Consultant Portfolio";
+    const metaDescription = document.querySelector('meta[name="description"]');
+    if (metaDescription) {
+      metaDescription.setAttribute("content", "Explore our MEP engineering project portfolio featuring HVAC, electrical, plumbing, fire protection, and ELV system solutions delivered across commercial, industrial, and residential sectors. See quality, innovation, and engineering excellence in action.");
+    }
+  }, []);
+
   return (
     <Layout>
       <PageHero
         badge="Showcasing Our Expertise"
         title="Projects That"
         subtitle="Define Excellence"
-        description="Explore our portfolio of successfully completed MEP engineering projects across various sectors."
+        description="MEP engineering consultancy committed to delivering integrated, high-performance building solutions. Over the years, we have built a strong reputation for providing reliable Mechanical, Electrical, Plumbing, and Fire Protection engineering services to modern infrastructure demands."
         backgroundImage={projectsHeroBg}
         variant="clean"
       />

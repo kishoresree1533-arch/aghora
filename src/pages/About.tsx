@@ -15,21 +15,47 @@ import {
   Zap,
   Droplets,
   Wind,
-  MapPin,
   Clock
 } from "lucide-react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useGSAP } from "@gsap/react";
 
-gsap.registerPlugin(ScrollTrigger);
 import Layout from "@/components/layout/Layout";
-
+import PageHero from "@/components/ui/PageHero";
 import aboutHeroBg from "@/assets/about-hero-bg.png";
 import engineerMeeting from "@/assets/engineer-meeting.png";
 import whyChooseUsBg from "@/assets/why-choose-us-new.jpg";
 
-import PageHero from "@/components/ui/PageHero";
+gsap.registerPlugin(ScrollTrigger);
+
+// Reusable Service Card Component for About Page
+const ServiceCard = ({ service, index }: { service: any, index: number }) => (
+  <div
+    className="group relative h-[280px] bg-white/5 backdrop-blur-sm border border-white/10 rounded-[2rem] p-8 
+        hover:bg-white/10 transition-all duration-500 hover:-translate-y-2 hover:shadow-2xl hover:shadow-secondary/10 overflow-hidden flex flex-col justify-between"
+  >
+    {/* Background Gradient Blob */}
+    <div className="absolute -right-10 -top-10 w-40 h-40 bg-secondary/20 rounded-full blur-[50px] group-hover:bg-secondary/30 transition-all duration-500" />
+
+    <div className="relative z-10">
+      <div className="w-16 h-16 rounded-2xl bg-gradient-to-br from-white/10 to-transparent border border-white/5 flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-500 shadow-lg">
+        <service.icon className="w-8 h-8 text-secondary group-hover:text-white transition-colors duration-300" />
+      </div>
+
+      <h3 className="text-2xl font-black text-white uppercase tracking-tight mb-2 leading-none">
+        {service.title}
+      </h3>
+      <div className="w-12 h-1 bg-secondary/50 rounded-full mb-4 group-hover:w-20 transition-all duration-500" />
+    </div>
+
+    <div className="relative z-10">
+      <p className="text-white/60 text-sm font-medium leading-relaxed group-hover:text-white/90 transition-colors">
+        {service.desc}
+      </p>
+    </div>
+  </div>
+);
 
 // Main About Page Component
 const About = () => {
@@ -37,7 +63,7 @@ const About = () => {
     document.title = "About Aghora Engineering Consultant | Trusted MEP Consultant";
     const metaDescription = document.querySelector('meta[name="description"]');
     if (metaDescription) {
-      metaDescription.setAttribute("content", "Learn about Aghora Engineering Consultant, your trusted MEP engineering partner in Coimbatore. Discover our expertise in HVAC, Electrical, PHE, Fire Protection & ELV systems, and our commitment to innovation, quality, and sustainable engineering solutions. MEP");
+      metaDescription.setAttribute("content", "Learn about Aghora Engineering Consultant, your trusted MEP engineering partner in Coimbatore. Discover our expertise in HVAC, Electrical, PHE, Fire Protection & ELV systems, and our commitment to innovation, quality, and sustainable engineering solutions.");
     }
   }, []);
 
@@ -45,9 +71,9 @@ const About = () => {
     <Layout>
       <PageHero
         badge="About Aghora"
-        title="Engineering Excellence"
-        subtitle="Since 2015"
-        description="A professionally driven MEP engineering consultancy delivering integrated solutions with a strong focus on quality, safety, and performance."
+        title="Engineering"
+        subtitle="Excellence Since 2015"
+        description="A trusted MEP engineering consultancy committed to delivering integrated, high-performance building solutions for modern architectural and infrastructure demands."
         backgroundImage={aboutHeroBg}
         variant="clean"
       />
@@ -89,17 +115,26 @@ const CompanyOverviewSection = () => {
                 Company Overview
               </span>
               <h2 className="text-5xl md:text-6xl font-black text-primary uppercase tracking-tighter leading-tight mb-6 mt-2 reveal-text">
-                MEP Engineering <br /> <span className="text-secondary">Excellence</span>
+                MEP Engineering <br /><span className="text-secondary">Excellence</span>
               </h2>
               <div className="w-24 h-1.5 bg-secondary rounded-full reveal-text" />
             </div>
 
             <p className="text-xl text-primary/70 leading-relaxed font-medium reveal-text">
-              <span className="text-primary font-black block mb-4">Where Innovation is Engineered</span>
-              At Aghora Engineering Consultant (AEC), we deliver innovative and reliable MEP engineering solutions designed to power modern infrastructure. As a trusted MEP consultant in Coimbatore, we specialize in providing end-to-end Mechanical, Electrical, and Plumbing (MEP) services for commercial, residential, industrial, and institutional projects with a commitment to quality, efficiency, and technical excellence, we transform complex engineering challenges into sustainable, high-performance solutions.
+              Aghora Engineering MEP Consultants is a professionally driven MEP engineering
+              consultancy based in Coimbatore, delivering integrated Mechanical, Electrical, Plumbing, Fire
+              Protection, and ELV engineering solutions for modern infrastructure projects.
+            </p>
+            <p className="text-lg text-primary/70 leading-relaxed reveal-text">
+              Since our establishment on <strong className="text-primary">May 28, 2015</strong>, we have built a reputation for providing
+              high-performance, energy-efficient, and code-compliant MEP design services across residential,
+              commercial, and industrial developments.
             </p>
             <p className="text-lg text-primary/60 leading-relaxed reveal-text">
-              Established on <strong className="text-primary">May 28, 2015</strong>, in Coimbatore, the firm has grown into a trusted name for comprehensive Mechanical, Electrical, Plumbing, Fire Protection, and ELV engineering services.
+              Our expertise lies in developing fully coordinated building systems that prioritize quality, safety,
+              operational efficiency, and long-term sustainability. By combining technical precision with
+              practical site experience, we ensure every project is engineered to meet national and
+              international standards.
             </p>
           </div>
 
@@ -177,9 +212,15 @@ const CoreServicesSection = () => {
       <div className="container mx-auto px-6 relative z-10">
         <div className="text-center mb-20">
           <span className="text-sm font-bold tracking-[0.3em] text-secondary uppercase block mb-4">What We Do</span>
-          <h2 className="text-4xl md:text-5xl font-black text-white uppercase tracking-tighter">
+          <h2 className="text-4xl md:text-5xl font-black text-white uppercase tracking-tighter mb-6">
             Core <span className="text-secondary">Services</span>
           </h2>
+          <p className="text-lg text-white/50 font-medium max-w-3xl mx-auto leading-relaxed">
+            At our firm, engineering excellence is more than a promise, it is the foundation of every MEP
+            project we deliver. We provide specialized Mechanical, Electrical, and Plumbing (MEP)
+            engineering services designed to enhance performance, safety, and long-term sustainability in
+            modern buildings.
+          </p>
         </div>
 
         {/* Single Line 5-Column Grid Layout */}
@@ -198,8 +239,30 @@ const CoreServicesSection = () => {
 // Experience & Industries Section - Interactive Grid
 const ExperienceIndustriesSection = () => {
   const sectors = [
-    "Healthcare Facilities", "IT & Commercial", "Educational Inst.",
-    "Hospitality Projects", "Residential Dev.", "Industrial Infra."
+    {
+      title: "Healthcare Facilities",
+      desc: "Specialized HVAC, electrical, and life safety systems for hospitals and medical centers."
+    },
+    {
+      title: "IT & Commercial Buildings",
+      desc: "Energy-efficient power distribution, cooling systems, and integrated ELV solutions."
+    },
+    {
+      title: "Educational Institutions",
+      desc: "Safe and sustainable infrastructure for schools and universities."
+    },
+    {
+      title: "Hospitality Projects",
+      desc: "Performance-driven MEP systems for hotels and luxury developments."
+    },
+    {
+      title: "Residential Developments",
+      desc: "Optimized plumbing, HVAC, and electrical systems for modern living spaces."
+    },
+    {
+      title: "Industrial Infrastructure",
+      desc: "Substation design, administrative facilities, and large-scale mechanical and electrical systems."
+    }
   ];
 
   return (
@@ -211,16 +274,16 @@ const ExperienceIndustriesSection = () => {
           <div className="lg:col-span-5">
             <span className="text-sm font-bold tracking-[0.3em] text-secondary uppercase block mb-6">Experience</span>
             <h2 className="text-4xl md:text-6xl font-black text-primary uppercase tracking-tighter mb-8 leading-none">
-              Trusted by <br /><span className="text-secondary">Leaders</span>
+              Trusted by <br /><span className="text-secondary">Industry Leaders</span>
             </h2>
 
             <div className="bg-white p-8 rounded-[2rem] shadow-xl shadow-primary/5 border border-primary/5 mb-8 relative overflow-hidden group">
               <div className="absolute top-0 right-0 w-24 h-24 bg-secondary/10 rounded-bl-[4rem] transition-all duration-500 group-hover:scale-150" />
-              <h3 className="text-xl font-bold text-primary mb-2">Since 2022</h3>
+              <h3 className="text-xl font-bold text-primary mb-2">Global Reach</h3>
               <p className="text-primary/70 leading-relaxed mb-4">
                 Part of prestigious international projects including <strong className="text-primary font-bold decoration-secondary underline decoration-2 underline-offset-4">ADNOC</strong>.
               </p>
-              <p className="text-sm text-primary/50">Expertise in substation design & large administrative facilities.</p>
+              <p className="text-sm text-primary/50">Delivering engineering excellence across South India and the Middle East.</p>
             </div>
 
             <div className="flex flex-wrap gap-2">
@@ -235,11 +298,16 @@ const ExperienceIndustriesSection = () => {
           <div className="lg:col-span-7">
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 gap-5">
               {sectors.map((sector, idx) => (
-                <div key={idx} className="group bg-white p-6 rounded-[1.5rem] shadow-sm hover:shadow-xl transition-all duration-300 hover:-translate-y-1 border border-transparent hover:border-secondary/20 flex items-center gap-4">
-                  <div className="w-10 h-10 rounded-full bg-grey-50 flex items-center justify-center group-hover:bg-secondary transition-colors duration-300">
-                    <CheckCircle2 className="w-5 h-5 text-primary/30 group-hover:text-white transition-colors" />
+                <div key={idx} className="group bg-white p-6 rounded-[1.5rem] shadow-sm hover:shadow-xl transition-all duration-300 hover:-translate-y-1 border border-transparent hover:border-secondary/20 flex flex-col gap-3">
+                  <div className="flex items-center gap-4">
+                    <div className="w-10 h-10 rounded-full bg-grey-50 flex items-center justify-center group-hover:bg-secondary transition-colors duration-300 flex-shrink-0">
+                      <CheckCircle2 className="w-5 h-5 text-primary/30 group-hover:text-white transition-colors" />
+                    </div>
+                    <h4 className="font-bold text-primary uppercase tracking-tight text-sm opacity-80 group-hover:opacity-100">{sector.title}</h4>
                   </div>
-                  <h4 className="font-bold text-primary uppercase tracking-tight text-sm opacity-80 group-hover:opacity-100">{sector}</h4>
+                  <p className="text-xs text-primary/60 leading-relaxed font-medium pl-14">
+                    {sector.desc}
+                  </p>
                 </div>
               ))}
             </div>
@@ -265,17 +333,17 @@ const PhilosophySection = () => {
     {
       icon: Eye,
       title: "Our Vision",
-      description: "To be the most trusted name in MEP engineering, known for innovation, quality, and sustainable solutions globally."
+      description: "To become the most trusted and innovative MEP engineering consultancy, recognized for delivering sustainable Mechanical, Electrical, Plumbing and Fire Protection that meet global engineering standards. We strive to shape future-ready infrastructure that balances performance, efficiency, and environmental responsibility."
     },
     {
       icon: Target,
       title: "Our Mission",
-      description: "To deliver excellence through teamwork, technical mastery, and a client-centric approach in every project we undertake."
+      description: "To deliver excellence in every MEP engineering project through teamwork, advanced technical expertise, and a client-focused approach. We are committed to designing integrated building systems that enhance safety, optimize energy efficiency, and ensure long-term operational performance."
     },
     {
       icon: Lightbulb,
       title: "Our Philosophy",
-      description: "We believe engineering is not just about systems; it's about solving problems and creating environments where people thrive."
+      description: "We believe engineering goes beyond designing systems, it is about solving complex infrastructure challenges with precision and innovation. Our philosophy centers on creating efficient, sustainable, and safe environments where businesses operate seamlessly and communities thrive."
     }
   ];
 
@@ -382,15 +450,21 @@ const WhyChooseUsSection = () => {
               <span className="text-sm font-bold tracking-[0.3em] text-secondary uppercase block mb-4">Why Choose Us</span>
               <h2 className="text-5xl md:text-7xl font-black text-primary uppercase tracking-tighter leading-[0.9]">
                 Technical <br /> <span className="text-secondary">Integrity</span>
+                <span className="text-primary/30 text-2xl md:text-3xl block mt-4 font-black">In MEP Engineering</span>
               </h2>
             </div>
 
             <div className="space-y-6 text-lg text-primary/70 leading-relaxed font-medium">
               <p>
-                Backed by a dedicated team of engineers with <strong className="text-primary border-b-2 border-secondary/30">12+ years of hands-on industry experience</strong>, Aghora Engineering delivers solutions that are technically sound, cost-effective, and future-ready.
+                At Aghora Engineering Consultant, technical integrity is the foundation of every MEP
+                engineering project we deliver. Backed by over <strong className="text-primary border-b-2 border-secondary/30">12+ years of hands-on industry experience</strong>,
+                our team of skilled engineers provides integrated Mechanical, Electrical, Plumbing and Fire
+                Protection that are technically precise, cost-effective, and future-ready.
               </p>
               <p>
-                We believe in building long-term partnerships through transparency, technical integrity, and consistent project delivery. Our client-centric approach ensures that every solution is tailored to specific project needs.
+                We design building systems that are not only compliant with national and international
+                engineering standards but also optimized for long-term performance, energy efficiency, and
+                operational reliability.
               </p>
             </div>
 
@@ -438,32 +512,6 @@ const CTASection = () => {
   );
 };
 
-// Reusable Service Card Component for About Page
-const ServiceCard = ({ service, index }: { service: any, index: number }) => (
-  <div
-    className="group relative h-[280px] bg-white/5 backdrop-blur-sm border border-white/10 rounded-[2rem] p-8 
-        hover:bg-white/10 transition-all duration-500 hover:-translate-y-2 hover:shadow-2xl hover:shadow-secondary/10 overflow-hidden flex flex-col justify-between"
-  >
-    {/* Background Gradient Blob */}
-    <div className="absolute -right-10 -top-10 w-40 h-40 bg-secondary/20 rounded-full blur-[50px] group-hover:bg-secondary/30 transition-all duration-500" />
 
-    <div className="relative z-10">
-      <div className="w-16 h-16 rounded-2xl bg-gradient-to-br from-white/10 to-transparent border border-white/5 flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-500 shadow-lg">
-        <service.icon className="w-8 h-8 text-secondary group-hover:text-white transition-colors duration-300" />
-      </div>
-
-      <h3 className="text-2xl font-black text-white uppercase tracking-tight mb-2 leading-none">
-        {service.title}
-      </h3>
-      <div className="w-12 h-1 bg-secondary/50 rounded-full mb-4 group-hover:w-20 transition-all duration-500" />
-    </div>
-
-    <div className="relative z-10">
-      <p className="text-white/60 text-sm font-medium leading-relaxed group-hover:text-white/90 transition-colors">
-        {service.desc}
-      </p>
-    </div>
-  </div>
-);
 
 export default About;

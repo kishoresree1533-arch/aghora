@@ -57,7 +57,23 @@ const ServicesList = () => {
   }, { scope: containerRef, dependencies: [servicesData] });
 
   return (
-    <section ref={containerRef} className="pb-10 pt-10 bg-grey-50 space-y-32 overflow-hidden relative">
+    <section ref={containerRef} className="pb-24 pt-24 bg-grey-50 space-y-32 overflow-hidden relative">
+      <div className="container mx-auto px-6 mb-20">
+        <div className="text-center max-w-4xl mx-auto">
+          <span className="inline-block py-1.5 px-4 rounded-full bg-secondary/10 text-secondary text-xs font-bold tracking-[0.2em] uppercase mb-6 border border-secondary/20">
+            Full-Spectrum Services
+          </span>
+          <h2 className="text-4xl md:text-6xl lg:text-7xl font-black text-primary uppercase tracking-tighter leading-[0.9] mb-8">
+            Integrated <span className="text-secondary">MEP Engineering</span>
+          </h2>
+          <p className="text-lg text-primary/70 leading-relaxed font-medium max-w-3xl mx-auto">
+            At our firm, engineering excellence is more than a promise, it is the foundation of every MEP
+            project we deliver. We provide specialized Mechanical, Electrical, and Plumbing (MEP)
+            engineering services designed to enhance performance, safety, and long-term sustainability in
+            modern buildings.
+          </p>
+        </div>
+      </div>
       <div className="absolute top-0 left-0 w-full h-full pointer-events-none">
         <div className="absolute top-1/4 -left-1/4 w-[800px] h-[800px] bg-secondary/5 rounded-full blur-[120px]" />
         <div className="absolute bottom-1/4 -right-1/4 w-[800px] h-[800px] bg-secondary/5 rounded-full blur-[120px]" />
@@ -153,23 +169,12 @@ const ProcessSection = () => {
 };
 
 const Services = () => {
-  useEffect(() => {
-    // Force a one-time clear of cached services to ensure new technical copy reflects
-    localStorage.removeItem("services");
-
-    document.title = "MEP Engineering Services | Integrated HVAC, Electrical & Plumbing";
-    const metaDescription = document.querySelector('meta[name="description"]');
-    if (metaDescription) {
-      metaDescription.setAttribute("content", "Aghora Engineering Consultant provides end-to-end MEP engineering services including HVAC, Electrical, Plumbing, Fire Protection, and ELV solutions focused on energy efficiency and safety.");
-    }
-  }, []);
-
   return (
     <Layout>
       <PageHero
         badge="MEP Engineering Consultants"
-        title="Integrated HVAC,"
-        subtitle="Electrical & Plumbing Design Solutions"
+        title="Integrated HVAC, Electrical"
+        subtitle="& Plumbing Design Solutions"
         description="We provide end-to-end MEP engineering services focused on energy efficiency, safety compliance, and high-performance building systems."
         backgroundImage={serviceHeroBg}
         variant="clean"

@@ -26,6 +26,7 @@ import {
 import { useState, useEffect, useRef } from "react";
 import Layout from "@/components/layout/Layout";
 import SplitText from "@/components/ui/SplitText";
+import PageHero from "@/components/ui/PageHero";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useGSAP } from "@gsap/react";
@@ -59,76 +60,19 @@ import aboutAghoraLatestImg from "@/assets/about-aghora-latest.jpg";
 
 // --- HERO SECTION ---
 const HeroSection = () => {
-  const heroImage = homeHeroBg;
-
   return (
-    <section className="relative h-screen flex items-start justify-center overflow-hidden pt-40">
-      {/* Full-width Background Image */}
-      <div className="absolute inset-0 z-0">
-        <img
-          src={heroImage}
-          alt="Aghora MEP Hero"
-          className="w-full h-full object-cover"
-        />
-        <div className="absolute inset-0 bg-primary/60 backdrop-blur-[2px]" />
-      </div>
-
-      <div className="container mx-auto px-6 relative z-10 text-center">
-        <div className="inline-flex items-center gap-2 px-4 py-2 bg-white/10 backdrop-blur-md rounded-full mb-8 border border-white/30 animate-fade-in">
-          <span className="text-[0.65rem] font-bold tracking-[0.4em] text-white uppercase">
-            Excellence in Engineering
-          </span>
-        </div>
-
-        <h1 className="text-5xl md:text-8xl font-black text-white mb-6 leading-tight tracking-tighter uppercase max-w-5xl mx-auto">
-          Building Your <br />
-          <SplitText
-            text="Vision"
-            className="text-secondary"
-            delay={50}
-            duration={1.25}
-            ease="power3.out"
-            tag="span"
-          />
-        </h1>
-
-        <p className="text-lg md:text-xl text-white/80 mb-8 max-w-2xl mx-auto leading-relaxed font-medium">
-          From your dreams to reality, we deliver premium MEP engineering solutions
-          with precision, quality, and integrity.
-        </p>
-
-        <div className="flex flex-col sm:flex-row gap-6 justify-center">
-          <Button
-            asChild
-            size="lg"
-            className="group relative bg-gradient-to-r from-secondary via-secondary to-secondary/90 hover:from-secondary/95 hover:to-secondary text-primary font-black rounded-2xl px-12 h-16 text-xs tracking-widest uppercase shadow-xl shadow-secondary/30 hover:shadow-2xl hover:shadow-secondary/40 transition-all duration-500 hover:-translate-y-1 hover:scale-105 overflow-hidden"
-          >
-            <Link to="/projects" className="flex items-center gap-3">
-              <span className="relative z-10">View Projects</span>
-              <ArrowRight className="w-4 h-4 relative z-10 transition-transform duration-300 group-hover:translate-x-1" />
-              <div className="absolute inset-0 bg-gradient-to-r from-white/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-            </Link>
-          </Button>
-          <Button
-            asChild
-            size="lg"
-            variant="outline"
-            className="group relative bg-white/5 border-2 border-white/30 text-white font-black rounded-2xl px-12 h-16 text-xs tracking-widest uppercase backdrop-blur-md hover:bg-white hover:text-primary hover:border-white shadow-lg shadow-black/10 hover:shadow-2xl hover:shadow-white/20 transition-all duration-500 hover:-translate-y-1 hover:scale-105 overflow-hidden"
-          >
-            <Link to="/contact" className="flex items-center gap-3">
-              <Phone className="w-4 h-4 relative z-10 transition-transform duration-300 group-hover:rotate-12" />
-              <span className="relative z-10">Get a Quote</span>
-              <div className="absolute inset-0 bg-gradient-to-r from-secondary/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-            </Link>
-          </Button>
-        </div>
-      </div>
-
-      {/* Scroll Indicator */}
-      <div className="absolute bottom-12 left-1/2 -translate-x-1/2 animate-bounce">
-        <div className="w-1 h-12 bg-gradient-to-b from-secondary to-transparent" />
-      </div>
-    </section>
+    <PageHero
+      isHome={true}
+      badge="Excellence in Engineering"
+      title="Building Your"
+      subtitle="Vision"
+      description="From your dreams to reality, we deliver premium MEP engineering solutions with precision, quality, and integrity."
+      backgroundImage={homeHeroBg}
+      buttons={[
+        { label: "View Projects", link: "/projects" },
+        { label: "Get a Quote", link: "/contact", variant: "outline" }
+      ]}
+    />
   );
 };
 
@@ -293,9 +237,11 @@ const AboutSection = () => {
               <div className="w-20 h-1 bg-secondary" />
             </div>
 
-            <p className="text-lg text-primary/70 leading-loose">
-              <span className="text-primary font-black block mb-2">Where Innovation is Engineered</span>
-              At Aghora Engineering Consultant (AEC), we deliver innovative and reliable MEP engineering solutions designed to power modern infrastructure. As a trusted MEP consultant in Coimbatore, we specialize in providing end-to-end Mechanical, Electrical, and Plumbing (MEP) services for commercial, residential, industrial, and institutional projects with a commitment to quality, efficiency, and technical excellence, we transform complex engineering challenges into sustainable, high-performance solutions.
+            <p className="text-lg text-primary/70 leading-relaxed font-medium mb-6">
+              We are dedicated to delivering innovative, practical, and sustainable MEP (Mechanical, Electrical & Plumbing) design solutions for residential, commercial, and industrial projects.
+            </p>
+            <p className="text-lg text-primary/70 leading-relaxed">
+              Our team blends technical excellence with field experience to ensure every project runs efficiently from conceptual planning through execution and commissioning.
             </p>
 
             <div className="grid sm:grid-cols-2 gap-8">
@@ -407,8 +353,10 @@ const ServicesSection = () => {
             Delivering Engineering <span className="text-secondary">Excellence</span>
           </h2>
           <p className="text-lg text-primary/50 font-medium">
-            We provide specialized engineering services that ensure high performance
-            and safety for modern building infrastructures.
+            At our firm, engineering excellence is more than a promise, it is the foundation of every MEP
+            project we deliver. We provide specialized Mechanical, Electrical, and Plumbing (MEP)
+            engineering services designed to enhance performance, safety, and long-term sustainability in
+            modern buildings.
           </p>
         </div>
 
@@ -521,9 +469,10 @@ const StrategicCapabilitiesSection = () => {
               Strategic <br /> <span className="text-secondary/50">Capabilities</span>
             </h2>
             <p className="text-white/60 text-lg leading-relaxed max-w-xl">
-              Backed by over 12 years of hands-on expertise, we integrate global engineering
-              benchmarks into every schematic, ensuring your infrastructure is built for
-              uncompromising performance.
+              With over 12 years of hands-on industry experience, we bring strategic insight and technical
+              precision to every MEP engineering project. Our team integrates global engineering
+              standards, advanced technologies, and practical site expertise to deliver infrastructure
+              solutions built for long-term performance, safety, and efficiency.
             </p>
             <div className="flex flex-wrap items-center gap-4 pt-4">
               {["Mechanical", "Electrical", "Plumbing", "Fire Protection"].map((tag) => (
@@ -788,14 +737,6 @@ const TargetIcon = (props: any) => (
 
 // --- MAIN HOME PAGE COMPONENT ---
 const Home = () => {
-  useEffect(() => {
-    document.title = "MEP Engineering Consultants | HVAC, Electrical & Plumbing";
-    const metaDescription = document.querySelector('meta[name="description"]');
-    if (metaDescription) {
-      metaDescription.setAttribute("content", "Expert MEP engineering consultants offering HVAC, electrical, and plumbing design solutions. Reliable, efficient, and sustainable engineering services. AGHORA");
-    }
-  }, []);
-
   return (
     <Layout>
       <HeroSection />

@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
@@ -36,13 +36,21 @@ import contactLocationBg from "@/assets/contact-location-bg.png";
 
 // Main Contact Page Component
 const Contact = () => {
+  useEffect(() => {
+    document.title = "Contact Aghora Engineering Consultant | Expert MEP Solutions";
+    const metaDescription = document.querySelector('meta[name="description"]');
+    if (metaDescription) {
+      metaDescription.setAttribute("content", "Get in touch with Aghora Engineering Consultant for expert MEP solutions. We specialize in HVAC, Electrical, and plumbing systems design across commercial, industrial, and residential sectors.");
+    }
+  }, []);
+
   return (
     <Layout>
       <PageHero
         badge="24/7 Professional Support"
-        title="Let's Build Something"
-        subtitle="Amazing"
-        description="Ready to start your dream project? We're here to help you every step of the way with expert MEP solutions."
+        title="Engineering Solutions"
+        subtitle="Designed for Your Success"
+        description="Get in touch with our experts for specialized MEP engineering services designed to enhance performance, safety, and long-term sustainability."
         backgroundImage={contactHeroBg}
         variant="clean"
       />
@@ -219,12 +227,12 @@ const contactInfo = [
   {
     icon: MapPin,
     title: "Visit Us",
-    subtitle: "Come say hello",
-    detail: "Coimbatore, Tamil Nadu",
+    subtitle: "Our Coimbatore Office",
+    detail: "New Sidhapudur, Coimbatore",
     footer: "GET DIRECTIONS",
     color: "green",
-    content: ["AEC AGHORA", "Coimbatore Office", "Tamil Nadu, India"],
-    links: ["https://maps.google.com"],
+    content: ["65-67, 3rd Floor, VKK Menon Road,", "(Above Central Bank of India),", "New Sidhapudur, Coimbatore - 44"],
+    links: ["https://www.google.com/maps/search/?api=1&query=Aghora+Design+Academy+MEP+Coimbatore+VKK+Menon+Road"],
   },
 ];
 
@@ -348,33 +356,7 @@ const ContactSection = () => {
             </div>
 
             <div className="animate-fade-in animation-delay-300">
-              <div className="rounded-3xl overflow-hidden shadow-2xl relative group mb-12">
-                <div className="aspect-[4/3] relative">
-                  <img
-                    src={contactLocationBg}
-                    alt="Office"
-                    className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent p-10 flex flex-col justify-end">
-                    <div className="w-12 h-12 rounded-2xl bg-white/20 backdrop-blur-md flex items-center justify-center mb-4">
-                      <MapPin className="h-6 w-6 text-white" />
-                    </div>
-                    <h3 className="text-2xl font-bold text-white mb-2">Coimbatore Office</h3>
-                    <p className="text-white/80 mb-4 font-medium">Coimbatore, Tamil Nadu, Tamil Nadu</p>
-                    <a
-                      href="https://maps.google.com"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="text-white font-bold flex items-center gap-2 group/link"
-                    >
-                      VIEW ON GOOGLE MAPS
-                      <div className="h-[2px] w-12 bg-white transition-all group-hover/link:w-20" />
-                    </a>
-                  </div>
-                </div>
-              </div>
-
-              <div className="bg-white/50 backdrop-blur-sm rounded-3xl p-10 border border-white">
+              <div className="bg-white/50 backdrop-blur-sm rounded-3xl p-10 border border-white mb-12">
                 <h3 className="text-2xl font-bold text-foreground mb-8">Common Questions</h3>
                 <div className="space-y-8">
                   <div>

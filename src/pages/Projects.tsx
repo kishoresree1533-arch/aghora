@@ -131,11 +131,11 @@ const ExpertiseSection = () => {
   return (
     <section ref={containerRef} className="py-24 bg-white relative overflow-hidden">
       <div className="container mx-auto px-6 relative z-10">
-        <div className="text-center max-w-3xl mx-auto mb-20">
-          <span className="inline-block px-4 py-1.5 bg-secondary/10 text-secondary rounded-full text-xs font-bold tracking-[0.2em] mb-4 uppercase border border-secondary/20">
+        <div className="text-center max-w-4xl mx-auto mb-20">
+          <span className="inline-block py-1.5 px-4 rounded-full bg-secondary/10 text-secondary text-xs font-bold tracking-[0.2em] mb-6 uppercase border border-secondary/20">
             Project Topics
           </span>
-          <h2 className="text-4xl md:text-5xl lg:text-6xl font-black text-primary mb-6 uppercase tracking-tight leading-tight">
+          <h2 className="text-4xl md:text-6xl lg:text-7xl font-black text-primary mb-8 uppercase tracking-tighter leading-[0.9]">
             Our Core <span className="text-secondary">Expertise</span>
           </h2>
         </div>
@@ -298,8 +298,8 @@ const Projects = () => {
       <PageHero
         badge="Showcasing Our Expertise"
         title="Projects That"
-        subtitle="Define Excellence"
-        description="MEP engineering consultancy committed to delivering integrated, high-performance building solutions. Over the years, we have built a strong reputation for providing reliable Mechanical, Electrical, Plumbing, and Fire Protection engineering services to modern infrastructure demands."
+        subtitle="Define Engineering Excellence"
+        description="Explore our portfolio of high-performance building systems delivered across commercial, industrial, and residential sectors."
         backgroundImage={projectsHeroBg}
         variant="clean"
       />

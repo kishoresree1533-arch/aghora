@@ -30,25 +30,25 @@ const benefits = [
   {
     icon: GraduationCap,
     title: "Expert Instructors",
-    description: "Learn from industry professionals with decades of hands-on experience.",
+    description: "Learn from experienced MEP engineers and industry professionals with extensive hands-on project expertise in HVAC, Electrical, Plumbing, and Fire Protection systems.",
     color: "from-blue-500/20 to-blue-600/5",
   },
   {
     icon: Briefcase,
-    title: "Practical Approach",
-    description: "Real-world case studies and hands-on exercises for practical learning.",
+    title: "Practical, Industry-Focused Approach",
+    description: "Gain real-world exposure through live project case studies, design exercises, and hands-on software training that prepares you for actual site and consultancy roles.",
     color: "from-secondary/20 to-secondary/5",
   },
   {
     icon: Award,
-    title: "Certification",
-    description: "Receive recognized certificates upon successful course completion.",
+    title: "Recognized Certification",
+    description: "Receive industry-recognized certification upon successful completion, enhancing your resume and increasing job opportunities in the MEP sector.",
     color: "from-emerald-500/20 to-emerald-600/5",
   },
   {
     icon: Users,
-    title: "Networking",
-    description: "Connect with industry peers and expand your professional network.",
+    title: "Professional Networking Opportunities",
+    description: "Connect with industry experts, fellow engineers, and construction professionals to expand your career network and unlock new opportunities.",
     color: "from-purple-500/20 to-purple-600/5",
   },
 ];
@@ -75,15 +75,16 @@ const BenefitsSection = () => {
         <div className="absolute top-1/4 -right-1/4 w-[600px] h-[600px] bg-secondary/5 rounded-full blur-[100px]" />
       </div>
       <div className="container mx-auto px-6 relative z-10">
-        <div className="text-center max-w-3xl mx-auto mb-20">
+        <div className="text-center max-w-4xl mx-auto mb-20">
           <span className="inline-block px-4 py-1.5 bg-secondary/10 text-secondary rounded-full text-xs font-bold tracking-[0.2em] mb-4 uppercase border border-secondary/20">
             Why Choose Us
           </span>
-          <h2 className="text-4xl md:text-5xl font-black text-primary mb-6 uppercase tracking-tight">
-            Training <span className="text-secondary">Benefits</span>
+          <h2 className="text-4xl md:text-5xl lg:text-6xl font-black text-primary mb-6 uppercase tracking-tight">
+            Training Benefits That <span className="text-secondary">Accelerate Your Career</span>
           </h2>
-          <p className="text-lg text-primary/60 leading-relaxed">
-            Our training programs are designed to give you practical skills that make an immediate impact in your career.
+          <p className="text-lg text-primary/60 leading-relaxed font-medium">
+            Our professional MEP training programs are designed to deliver practical, job-ready
+            skills that create immediate impact in the engineering and construction industry.
           </p>
         </div>
 
@@ -229,10 +230,11 @@ const CourseCatalog = () => {
             Course Catalog
           </span>
           <h2 className="text-4xl md:text-5xl font-black text-primary mb-6 uppercase tracking-tight">
-            Training <span className="text-secondary">Programs</span>
+            Advanced MEP <span className="text-secondary">Design & Engineering</span>
           </h2>
-          <p className="text-lg text-primary/60 leading-relaxed">
-            Meister the complexities of MEP engineering with our curriculum tailored for excellence in the modern industry.
+          <p className="text-lg text-primary/60 leading-relaxed font-medium">
+            Master the core principles and advanced techniques of Mechanical, Electrical, and
+            Plumbing (MEP) engineering through our industry-focused training curriculum.
           </p>
         </div>
 
@@ -280,12 +282,15 @@ const CustomTraining = () => {
         <div className="grid lg:grid-cols-2 gap-24 items-center">
           <div className="space-y-10">
             <div className="custom-reveal">
-              <span className="text-sm font-bold tracking-[0.3em] text-secondary uppercase block mb-4">Tailored Solutions</span>
+              <span className="text-sm font-bold tracking-[0.3em] text-secondary uppercase block mb-4">Expert SOLUTIONS</span>
               <h2 className="text-5xl md:text-7xl font-black text-primary uppercase tracking-tighter leading-[0.9] mb-8">
-                Corporate <br /> <span className="text-secondary">Excellence</span>
+                Corporate Training <br /> <span className="text-secondary">Excellence</span>
               </h2>
               <p className="text-lg text-primary/70 leading-relaxed font-medium max-w-xl">
-                We empower organizations with bespoke training solutions. Our experts deliver on-site and virtual programs designed for your specific project challenges.
+                We empower organizations with customized corporate MEP training programs
+                designed to address real-world project challenges. Our expert-led sessions are
+                delivered both on-site and virtually, ensuring flexibility while maintaining the highest
+                standards of technical excellence.
               </p>
             </div>
 
@@ -372,10 +377,10 @@ const Training = () => {
   return (
     <Layout>
       <PageHero
-        badge="Professional Development"
-        title="Professional MEP"
-        subtitle="Training & Development"
-        description="Enhance your skills with industry-leading training programs designed by experienced MEP professionals for the next generation of engineers."
+        badge="BUILD YOUR MEP CAREER"
+        title="Hands-On Technical"
+        subtitle="Professional Training for Engineers"
+        description="Enhance your engineering career with industry-oriented MEP training programs in HVAC design, Electrical systems, Plumbing, Fire Protection, and ELV."
         backgroundImage={trainingHeroBg}
         variant="clean"
       />

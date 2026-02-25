@@ -17,6 +17,7 @@ interface PageHeroProps {
     curvedBottom?: boolean;
     buttons?: HeroButton[];
     variant?: "default" | "clean";
+    isHome?: boolean;
 }
 
 const PageHero = ({
@@ -27,10 +28,11 @@ const PageHero = ({
     badge,
     curvedBottom = false,
     buttons,
-    variant = "default"
+    variant = "default",
+    isHome = false
 }: PageHeroProps) => {
     return (
-        <section className="relative h-[75vh] min-h-[420px] flex items-start justify-center overflow-hidden pt-36">
+        <section className={`relative ${isHome ? 'h-screen' : 'h-[70vh]'} flex items-center justify-center overflow-hidden`}>
             {/* Full-width Background Image */}
             <div className="absolute inset-0 z-0">
                 <img
@@ -38,23 +40,19 @@ const PageHero = ({
                     alt={title}
                     className="w-full h-full object-cover"
                 />
-                {variant === "default" ? (
-                    <div className="absolute inset-0 bg-primary/70 backdrop-blur-[2px]" />
-                ) : (
-                    <div className="absolute inset-0 bg-primary/50" />
-                )}
+                <div className="absolute inset-0 bg-primary/60 backdrop-blur-[2px]" />
             </div>
 
-            <div className="container mx-auto px-6 relative z-10 text-center pb-20">
+            <div className={`container mx-auto px-6 relative z-10 text-center ${isHome ? 'pt-32 md:pt-40' : 'pt-20 md:pt-24'}`}>
                 {badge && (
-                    <div className="inline-flex items-center gap-2 px-4 py-2 bg-white/10 backdrop-blur-md rounded-full mb-8 border border-white/30 animate-fade-in">
+                    <div className="inline-flex items-center gap-2 px-4 py-2 bg-secondary/20 backdrop-blur-md rounded-full mb-8 border border-secondary/30">
                         <span className="text-[0.65rem] font-bold tracking-[0.4em] text-white uppercase">
                             {badge}
                         </span>
                     </div>
                 )}
 
-                <h1 className="text-4xl md:text-7xl font-black text-white mb-6 leading-tight tracking-tighter uppercase max-w-5xl mx-auto">
+                <h1 className="text-3xl md:text-5xl lg:text-6xl font-black text-white mb-8 leading-[1.1] tracking-tighter uppercase max-w-7xl mx-auto">
                     {subtitle ? (
                         <>
                             {title} <br />
@@ -80,13 +78,13 @@ const PageHero = ({
                 </h1>
 
                 {description && (
-                    <p className="text-lg md:text-xl text-white/80 mb-8 max-w-2xl mx-auto leading-relaxed font-medium animate-fade-in animation-delay-200">
+                    <p className="text-lg md:text-xl text-white/80 mb-12 max-w-2xl mx-auto leading-relaxed font-medium">
                         {description}
                     </p>
                 )}
 
                 {buttons && buttons.length > 0 && (
-                    <div className="flex flex-col sm:flex-row gap-6 justify-center animate-fade-in animation-delay-300">
+                    <div className="flex flex-col sm:flex-row gap-6 justify-center">
                         {buttons.map((btn, idx) => (
                             <Button
                                 key={idx}
@@ -94,9 +92,9 @@ const PageHero = ({
                                 size="lg"
                                 variant={btn.variant || "default"}
                                 className={`${btn.variant === "outline"
-                                    ? "bg-white/5 border-white/20 text-white hover:bg-white hover:text-primary"
+                                    ? "bg-white/5 border-2 border-white/30 text-white hover:bg-white hover:text-primary backdrop-blur-md"
                                     : "bg-secondary hover:bg-secondary/90 text-primary"
-                                    } font-black rounded-none px-10 h-16 text-xs tracking-widest uppercase transition-all backdrop-blur-sm`}
+                                    } font-black rounded-2xl px-12 h-16 text-xs tracking-widest uppercase shadow-xl transition-all duration-500 hover:-translate-y-1 hover:scale-105`}
                             >
                                 <Link to={btn.link}>{btn.label}</Link>
                             </Button>
@@ -105,10 +103,10 @@ const PageHero = ({
                 )}
             </div>
 
-            {/* Decorative Gradient Bottom - Only for default variant */}
-            {variant === "default" && !curvedBottom && (
-                <div className="absolute -bottom-1 left-0 right-0 h-24 bg-gradient-to-t from-background to-transparent z-20 pointer-events-none" />
-            )}
+            {/* Scroll Indicator */}
+            <div className="absolute bottom-12 left-1/2 -translate-x-1/2">
+                <div className="w-1 h-12 bg-gradient-to-b from-secondary to-transparent animate-bounce" />
+            </div>
 
             {/* Curved Bottom Transition */}
             {curvedBottom && (

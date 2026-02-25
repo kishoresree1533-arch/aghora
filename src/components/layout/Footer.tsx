@@ -46,7 +46,12 @@ const Footer = () => {
             </Link>
             <p className="text-white/60 text-sm leading-loose max-w-sm">
               <span className="text-white font-black block mb-2">Where Innovation is Engineered</span>
-              At Aghora Engineering Consultant (AEC), we deliver innovative and reliable MEP engineering solutions designed to power modern infrastructure. As a trusted MEP consultant in Coimbatore, we specialize in providing end-to-end Mechanical, Electrical, and Plumbing (MEP) services for commercial, residential, industrial, and institutional projects with a commitment to quality, efficiency, and technical excellence, we transform complex engineering challenges into sustainable, high-performance solutions.
+              At Aghora Engineering Consultant (AEC), we deliver innovative and reliable MEP
+              engineering solutions designed to power modern infrastructure. As a trusted MEP
+              consultant in Coimbatore, we specialize in providing end-to-end Mechanical, Electrical,
+              and Plumbing (MEP) services for commercial, residential, industrial, and institutional
+              projects. With a commitment to quality, efficiency, and technical excellence, we transform
+              complex engineering challenges into sustainable, high-performance solutions.
             </p>
             <div className="flex gap-4">
               {[
@@ -108,27 +113,32 @@ const Footer = () => {
             <ul className="space-y-6">
               <li className="flex items-start gap-4">
                 <MapPin className="h-5 w-5 text-secondary flex-shrink-0 mt-1" />
-                <span className="text-white/60 text-sm leading-relaxed">
+                <a
+                  href="https://www.google.com/maps/search/?api=1&query=Aghora+Design+Academy+MEP+Coimbatore+VKK+Menon+Road"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-white/60 hover:text-secondary transition-colors text-sm leading-relaxed"
+                >
                   65-67, 3rd Floor, VKK Menon Road, (Above Central Bank of India),
                   New Sidhapudur, Coimbatore - 44
-                </span>
+                </a>
               </li>
               <li className="flex items-center gap-4">
                 <Phone className="h-5 w-5 text-secondary flex-shrink-0" />
                 <a
-                  href="tel:+917907825109"
+                  href="tel:+919962427775"
                   className="text-white/60 hover:text-secondary transition-colors text-sm font-medium"
                 >
-                  +91 79078 25109
+                  +91 99624 27775
                 </a>
               </li>
               <li className="flex items-center gap-4">
                 <Mail className="h-5 w-5 text-secondary flex-shrink-0" />
                 <a
-                  href="mailto:aghora.mepconsultant@zohomail.in"
+                  href="mailto:info@aghoramep.com"
                   className="text-white/60 hover:text-secondary transition-colors text-sm font-medium break-all"
                 >
-                  aghora.mepconsultant@zohomail.in
+                  info@aghoramep.com
                 </a>
               </li>
             </ul>

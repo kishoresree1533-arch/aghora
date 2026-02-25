@@ -15,7 +15,7 @@ const Footer = () => {
 
   const services = [
     { name: "HVAC Engineering", path: "/services#hvac" },
-    { name: "PHE Engineering", path: "/services#phe" },
+    { name: "PHE Engineering", path: "/services#plumbing" },
     { name: "Electrical Engineering", path: "/services#electrical" },
     { name: "FPS Engineering", path: "/services#fire" },
     { name: "ELV Engineering", path: "/services#elv" },

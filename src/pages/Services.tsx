@@ -1,5 +1,5 @@
 import { useRef, useState, useEffect } from "react";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import {
@@ -31,6 +31,7 @@ const iconMap: any = {
 const ServicesList = () => {
   const [servicesData, setServicesData] = useState<any[]>([]);
   const containerRef = useRef(null);
+  const location = useLocation();
 
   useEffect(() => {
     const loadData = async () => {
@@ -39,6 +40,18 @@ const ServicesList = () => {
     };
     loadData();
   }, []);
+
+  useEffect(() => {
+    if (servicesData.length > 0 && location.hash) {
+      const id = location.hash.substring(1);
+      setTimeout(() => {
+        const element = document.getElementById(id);
+        if (element) {
+          element.scrollIntoView({ behavior: "smooth" });
+        }
+      }, 100);
+    }
+  }, [servicesData, location.hash]);
 
   useGSAP(() => {
     const sections = gsap.utils.toArray('.service-section');
@@ -83,7 +96,7 @@ const ServicesList = () => {
         const Icon = iconMap[service.icon] || Briefcase;
 
         return (
-          <div key={service.id} className="service-section container mx-auto px-6 relative">
+          <div id={service.id} key={service.id} className="service-section container mx-auto px-6 relative scroll-mt-32">
             {idx !== servicesData.length - 1 && (
               <div className={`hidden lg:block absolute left-1/2 top-full h-32 w-px bg-gradient-to-b from-secondary/50 to-transparent -translate-x-1/2 z-0`} />
             )}

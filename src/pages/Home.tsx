@@ -281,6 +281,7 @@ const services = [
   {
     icon: Wind,
     title: "HVAC Engineering",
+    id: "hvac",
     description: "Heating Ventilation and Air Conditioning. Comprehensive design and sizing for optimal thermal comfort.",
     image: hvacServiceLatestImg
 
@@ -288,12 +289,14 @@ const services = [
   {
     icon: Zap,
     title: "Electrical Engineering",
+    id: "electrical",
     description: "Power Distribution and Panel Board Design for robust industrial and commercial infrastructure.",
     image: innovativeEngineeringImg
   },
   {
     icon: Droplets,
     title: "PHE Engineering",
+    id: "plumbing",
     description: "Public Health Engineering. Sustainable plumbing, drainage, and water distribution systems.",
     image: pheServiceLatestImg
 
@@ -301,12 +304,14 @@ const services = [
   {
     icon: Flame,
     title: "FPS Engineering",
+    id: "fire",
     description: "Fire Protection Systems. Sprinklers, hydrants, and advanced alarm systems for safety.",
     image: fpsServiceNewImg
   },
   {
     icon: Shield,
     title: "ELV Engineering",
+    id: "elv",
     description: "Extra Low Voltage. Integrated Security, CCTV, PA, and Access Control systems.",
     image: elvServiceLatestImg
 
@@ -314,6 +319,7 @@ const services = [
   {
     icon: Cpu,
     title: "Smart Automation",
+    id: "smart",
     description: "High-end residential MEP and building automation systems for modern luxury living.",
     image: luxuryVillaImg
   },
@@ -390,7 +396,7 @@ const ServicesSection = () => {
                 </p>
 
                 <Link
-                  to="/services"
+                  to={`/services#${service.id}`}
                   className="inline-flex items-center text-secondary font-black uppercase text-[0.65rem] tracking-[0.4em] transition-all group-hover:tracking-[0.5em]"
                 >
                   Explore Service

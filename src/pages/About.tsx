@@ -73,7 +73,7 @@ const About = () => {
         badge="About Aghora"
         title="Engineering"
         subtitle="Excellence Since 2015"
-        description="A trusted MEP engineering consultancy committed to delivering integrated, high-performance building solutions for modern architectural and infrastructure demands."
+        description="MEP engineering consultancy committed to delivering integrated, high-performance building solutions. Over the years, we have built a strong reputation for providing reliable Mechanical, Electrical, Plumbing, and Fire Protection engineering services to modern infrastructure demands."
         backgroundImage={aboutHeroBg}
         variant="clean"
       />
@@ -450,7 +450,7 @@ const WhyChooseUsSection = () => {
               <span className="text-sm font-bold tracking-[0.3em] text-secondary uppercase block mb-4">Why Choose Us</span>
               <h2 className="text-5xl md:text-7xl font-black text-primary uppercase tracking-tighter leading-[0.9]">
                 Technical <br /> <span className="text-secondary">Integrity</span>
-                <span className="text-primary/30 text-2xl md:text-3xl block mt-4 font-black">In MEP Engineering</span>
+                <span className="text-primary text-2xl md:text-3xl block mt-4 font-black">In MEP Engineering</span>
               </h2>
             </div>
 

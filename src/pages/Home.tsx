@@ -232,7 +232,7 @@ const AboutSection = () => {
                 Who We Are
               </span>
               <h2 className="text-4xl md:text-6xl font-black text-primary uppercase tracking-tighter leading-none">
-                About AGHORA <br /> <span className="text-secondary">Engineering</span>
+                AGHORA MEP <br /> <span className="text-secondary">Engineering Consultants</span>
               </h2>
               <div className="w-20 h-1 bg-secondary" />
             </div>
@@ -472,7 +472,7 @@ const StrategicCapabilitiesSection = () => {
           <div className="lg:w-1/2 space-y-8 cap-text">
             <span className="text-secondary font-bold tracking-[0.4em] uppercase text-[0.6rem]">Technical Superiority</span>
             <h2 className="text-5xl md:text-7xl font-black text-white leading-none tracking-tighter uppercase">
-              Strategic <br /> <span className="text-secondary/50">Capabilities</span>
+              Strategic Capabilities <br /> <span className="text-secondary/50">in MEP Engineering</span>
             </h2>
             <p className="text-white/60 text-lg leading-relaxed max-w-xl">
               With over 12 years of hands-on industry experience, we bring strategic insight and technical

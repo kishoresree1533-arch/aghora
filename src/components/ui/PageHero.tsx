@@ -11,7 +11,7 @@ interface HeroButton {
 interface PageHeroProps {
     title: string;
     subtitle?: string;
-    description?: string;
+    description?: React.ReactNode;
     backgroundImage: string;
     badge?: string;
     curvedBottom?: boolean;
@@ -78,7 +78,7 @@ const PageHero = ({
                 </h1>
 
                 {description && (
-                    <p className="text-lg md:text-xl text-white/80 mb-12 max-w-2xl mx-auto leading-relaxed font-medium">
+                    <p className="text-lg md:text-xl text-white/80 mb-12 max-w-5xl mx-auto leading-relaxed font-medium">
                         {description}
                     </p>
                 )}

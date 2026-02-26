@@ -73,7 +73,13 @@ const About = () => {
         badge="About Aghora"
         title="Engineering"
         subtitle="Excellence Since 2015"
-        description="MEP engineering consultancy committed to delivering integrated, high-performance building solutions. Over the years, we have built a strong reputation for providing reliable Mechanical, Electrical, Plumbing, and Fire Protection engineering services to modern infrastructure demands."
+        description={
+          <>
+            MEP engineering consultancy committed to delivering integrated, high-performance building solutions. <br />
+            Over the years, we have built a strong reputation for providing reliable Mechanical, Electrical, Plumbing, <br />
+            and Fire Protection engineering services to modern infrastructure demands.
+          </>
+        }
         backgroundImage={aboutHeroBg}
         variant="clean"
       />

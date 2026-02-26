@@ -2,6 +2,7 @@ import { ReactNode } from "react";
 import Header from "./Header";
 import Footer from "./Footer";
 import LocationMap from "./LocationMap";
+import FloatingActions from "./FloatingActions";
 
 
 interface LayoutProps {
@@ -15,6 +16,7 @@ const Layout = ({ children }: LayoutProps) => {
       <main className="flex-1">{children}</main>
       <LocationMap />
       <Footer />
+      <FloatingActions />
     </div>
   );
 };

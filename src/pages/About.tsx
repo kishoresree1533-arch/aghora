@@ -114,8 +114,8 @@ const CompanyOverviewSection = () => {
     <section ref={sectionRef} className="py-24 bg-white relative overflow-hidden reveal-item">
       <div className="absolute top-0 left-0 w-full h-[500px] bg-gradient-to-b from-grey-50 to-transparent -z-10" />
       <div className="section-container">
-        <div className="flex flex-col lg:flex-row gap-20 items-start">
-          <div className="lg:w-1/2 space-y-8 sticky top-32">
+        <div className="flex flex-col lg:flex-row gap-20 items-stretch">
+          <div className="lg:w-1/2 flex flex-col justify-center space-y-8 sticky top-32">
             <div>
               <span className="inline-block py-1 px-3 rounded-full bg-secondary/10 text-secondary text-xs font-bold tracking-[0.2em] uppercase mb-6 border border-secondary/20">
                 Company Overview
@@ -144,7 +144,7 @@ const CompanyOverviewSection = () => {
             </p>
           </div>
 
-          <div className="lg:w-1/2 space-y-8">
+          <div className="lg:w-1/2 flex flex-col justify-center space-y-8">
             {/* Timeline Item 1 */}
             <div className="relative pl-12 border-l-2 border-secondary/20 hover:border-secondary transition-colors duration-500 group reveal-text">
               <div className="absolute -left-[9px] top-0 w-4 h-4 rounded-full bg-white border-4 border-secondary group-hover:scale-125 transition-transform duration-300" />
@@ -170,7 +170,7 @@ const CompanyOverviewSection = () => {
             </div>
 
             {/* Visual Element */}
-            <div className="relative h-72 rounded-[2.5rem] overflow-hidden shadow-2xl group mt-8 reveal-text">
+            <div className="relative aspect-square lg:aspect-[16/10] rounded-[2.5rem] overflow-hidden shadow-2xl group mt-8 reveal-text w-full">
               <img src={engineerMeeting} alt="Engineering Team" className="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-110" />
               <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
               <div className="absolute bottom-8 left-8 text-white">
@@ -427,9 +427,9 @@ const WhyChooseUsSection = () => {
   return (
     <section ref={containerRef} className="py-24 bg-white overflow-hidden relative reveal-item">
       <div className="section-container">
-        <div className="flex flex-col lg:flex-row gap-20 items-center">
-          <div className="lg:w-1/2 relative group why-choose-visual">
-            <div className="relative z-10 rounded-[3rem] overflow-hidden shadow-2xl border-[8px] border-white h-[600px] w-full bg-grey-50 transition-transform duration-500 hover:rotate-1 hover:scale-[1.02]">
+        <div className="flex flex-col lg:flex-row gap-20 items-stretch">
+          <div className="lg:w-1/2 relative group why-choose-visual flex flex-col justify-center">
+            <div className="relative z-10 rounded-[3rem] overflow-hidden shadow-2xl border-[8px] border-white aspect-[4/5] md:aspect-square w-full bg-grey-50 transition-transform duration-500 hover:rotate-1 hover:scale-[1.02]">
               <img src={whyChooseUsBg} alt="Why Choose Us" className="w-full h-full object-cover transition-transform duration-[2s] group-hover:scale-110" />
               {/* Stats Overlay */}
               <div className="absolute bottom-0 left-0 right-0 bg-primary/95 backdrop-blur-md p-10 text-white border-t border-white/10 transition-transform duration-500 group-hover:translate-y-2">

@@ -108,7 +108,7 @@ const Footer = () => {
           </div>
 
           {/* Contact Info */}
-          <div>
+          <div className="lg:-ml-8">
             <h3 className="text-sm font-bold tracking-[0.2em] uppercase mb-8 text-secondary">Contact Us</h3>
             <ul className="space-y-6">
               <li className="flex items-start gap-4">
@@ -143,10 +143,10 @@ const Footer = () => {
               <li className="flex items-center gap-4">
                 <Mail className="h-5 w-5 text-secondary flex-shrink-0" />
                 <a
-                  href="mailto:info@aghoramep.com"
+                  href="mailto:info@aghoraengineeringconsultants.com"
                   className="text-white/60 hover:text-secondary transition-colors text-sm font-medium break-all"
                 >
-                  info@aghoramep.com
+                  info@aghoraengineeringconsultants.com
                 </a>
               </li>
             </ul>

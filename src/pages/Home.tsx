@@ -159,13 +159,11 @@ const PremiumStatsSection = () => {
   return (
     <section ref={containerRef} className="pt-16 pb-32 bg-white overflow-hidden reveal-item">
       <div className="section-container">
-        <div className="grid lg:grid-cols-2 gap-20 items-center">
-          <div className="relative">
-            <div className="h-[600px] w-full rounded-[3rem] overflow-hidden shadow-2xl relative group premium-popup">
+        <div className="grid lg:grid-cols-2 gap-20 items-stretch">
+          <div className="relative flex flex-col items-center justify-center">
+            <div className="w-full aspect-[4/5] md:aspect-square rounded-[3rem] overflow-hidden shadow-2xl relative group premium-popup">
               <img
                 src={landmarksPrecisionImg}
-
-
                 alt="Innovative Engineering"
                 className="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-105"
               />
@@ -181,7 +179,7 @@ const PremiumStatsSection = () => {
             <div className="absolute -top-10 -left-10 w-40 h-40 border-l-4 border-t-4 border-secondary/30 -z-10 rounded-tl-[3rem]" />
           </div>
 
-          <div className="space-y-12">
+          <div className="flex flex-col justify-center space-y-12">
             <div className="space-y-6">
               <span className="text-sm font-bold tracking-[0.3em] text-secondary uppercase block">
                 Engineering Excellence
@@ -246,10 +244,10 @@ const AboutSection = () => {
   }, { scope: containerRef });
 
   return (
-    <section ref={containerRef} className="pt-10 pb-10 bg-grey-50 overflow-hidden">
-      <div className="container mx-auto px-6">
-        <div className="grid lg:grid-cols-2 gap-24 items-center">
-          <div className="order-2 lg:order-1 space-y-10">
+    <section ref={containerRef} className="pt-10 pb-10 bg-grey-50 overflow-hidden reveal-item">
+      <div className="section-container">
+        <div className="grid lg:grid-cols-2 gap-24 items-stretch">
+          <div className="order-2 lg:order-1 flex flex-col justify-center space-y-10">
             <div className="space-y-6">
               <span className="text-sm font-bold tracking-[0.3em] text-secondary uppercase block">
                 Who We Are
@@ -279,13 +277,11 @@ const AboutSection = () => {
             </div>
           </div>
 
-          <div className="order-1 lg:order-2">
-            <div className="relative about-popup">
-              <div className="rounded-[3rem] overflow-hidden shadow-2xl border-[10px] border-white active-image-mask aspect-square lg:aspect-auto h-[600px]">
+          <div className="order-1 lg:order-2 flex flex-col items-center justify-center">
+            <div className="relative about-popup w-full">
+              <div className="rounded-[3rem] overflow-hidden shadow-2xl border-[10px] border-white active-image-mask aspect-[4/5] md:aspect-square w-full">
                 <img
                   src={aboutAghoraLatestImg}
-
-
                   alt="MEP Engineering Office"
                   className="w-full h-full object-cover transition-transform duration-1000 hover:scale-105"
                 />

@@ -120,17 +120,25 @@ const Footer = () => {
                   className="text-white/60 hover:text-secondary transition-colors text-sm leading-relaxed"
                 >
                   65-67, 3rd Floor, VKK Menon Road, (Above Central Bank of India),
-                  New Sidhapudur, Coimbatore - 44
+                  New Sidhapudur, Coimbatore - 641044
                 </a>
               </li>
-              <li className="flex items-center gap-4">
-                <Phone className="h-5 w-5 text-secondary flex-shrink-0" />
-                <a
-                  href="tel:+919962427775"
-                  className="text-white/60 hover:text-secondary transition-colors text-sm font-medium"
-                >
-                  +91 99624 27775
-                </a>
+              <li className="flex items-start gap-4">
+                <Phone className="h-5 w-5 text-secondary flex-shrink-0 mt-1" />
+                <div className="flex flex-col gap-2">
+                  <a
+                    href="tel:+917907825109"
+                    className="text-white/60 hover:text-secondary transition-colors text-sm font-medium"
+                  >
+                    +91 79078 25109
+                  </a>
+                  <a
+                    href="tel:+919080477453"
+                    className="text-white/60 hover:text-secondary transition-colors text-sm font-medium"
+                  >
+                    +91 90804 77453
+                  </a>
+                </div>
               </li>
               <li className="flex items-center gap-4">
                 <Mail className="h-5 w-5 text-secondary flex-shrink-0" />

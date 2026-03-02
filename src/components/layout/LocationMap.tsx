@@ -20,7 +20,7 @@ const LocationMap = () => {
                                     <p className="text-primary/60 text-sm leading-relaxed">
                                         65-67, 3rd Floor, VKK Menon Road,<br />
                                         (Above Central Bank of India),<br />
-                                        New Sidhapudur, Coimbatore - 44
+                                        New Sidhapudur, Coimbatore - 641044
                                     </p>
                                 </div>
                             </div>
@@ -46,7 +46,7 @@ const LocationMap = () => {
                                 allowFullScreen={true}
                                 loading="lazy"
                                 referrerPolicy="no-referrer-when-downgrade"
-                                className="grayscale contrast-125 opacity-80 group-hover:grayscale-0 group-hover:opacity-100 transition-all duration-700"
+                                className="w-full h-full"
                             />
                             <div className="absolute top-6 right-6 px-4 py-2 bg-white/90 backdrop-blur-md rounded-full text-[0.6rem] font-bold tracking-widest uppercase text-primary border border-primary/10 shadow-lg pointer-events-none">
                                 Interactive Map

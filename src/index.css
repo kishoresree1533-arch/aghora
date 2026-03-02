@@ -126,13 +126,24 @@
     @apply border-border;
   }
 
+  html {
+    scroll-behavior: smooth;
+    overflow-x: hidden;
+    width: 100vw;
+  }
+
   body {
     @apply bg-background text-foreground;
     font-feature-settings: "rlig" 1, "calt" 1;
+    overflow-x: hidden;
+    position: relative;
+    width: 100%;
   }
 
-  html {
-    scroll-behavior: smooth;
+  /* Prevent sub-pixel jitter during animations */
+  * {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
   }
 }
 
@@ -283,4 +294,52 @@
 
 .animate-hero-zoom {
   animation: hero-zoom 20s ease-in-out infinite alternate;
+}
+
+@keyframes marquee {
+  0% {
+    transform: translateX(0);
+  }
+
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+.animate-marquee {
+  animation: marquee 40s linear infinite;
+  will-change: transform;
+}
+
+.animate-marquee:hover {
+  animation-play-state: paused;
+}
+
+/* Global alignment helper */
+.section-container {
+  @apply container mx-auto px-6 lg:px-12;
+}
+
+/* Hardware acceleration for smooth reveals */
+.reveal-item {
+  backface-visibility: hidden;
+  transform: translateZ(0);
+}
+
+/* Custom Scrollbar for Modules */
+.custom-scrollbar::-webkit-scrollbar {
+  width: 4px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb {
+  background: hsl(var(--secondary) / 0.3);
+  border-radius: 10px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb:hover {
+  background: hsl(var(--secondary) / 0.6);
 }

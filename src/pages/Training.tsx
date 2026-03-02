@@ -70,11 +70,11 @@ const BenefitsSection = () => {
   }, { scope: containerRef });
 
   return (
-    <section ref={containerRef} className="py-24 bg-grey-50 relative overflow-hidden">
+    <section ref={containerRef} className="py-24 bg-grey-50 relative overflow-hidden reveal-item">
       <div className="absolute top-0 right-0 w-full h-full pointer-events-none">
         <div className="absolute top-1/4 -right-1/4 w-[600px] h-[600px] bg-secondary/5 rounded-full blur-[100px]" />
       </div>
-      <div className="container mx-auto px-6 relative z-10">
+      <div className="section-container relative z-10">
         <div className="text-center max-w-4xl mx-auto mb-20">
           <span className="inline-block px-4 py-1.5 bg-secondary/10 text-secondary rounded-full text-xs font-bold tracking-[0.2em] mb-4 uppercase border border-secondary/20">
             Why Choose Us
@@ -116,23 +116,47 @@ const courses = [
   {
     category: "HVAC",
     title: "Advanced HVAC System Design",
-    duration: "5 Days",
+    duration: "3 Months",
     level: "Intermediate",
     topics: ["Load calculation methodologies", "Equipment selection criteria", "Duct and piping design", "Energy optimization", "BIM for HVAC"],
     accent: "bg-blue-600",
   },
   {
     category: "Electrical",
-    title: "Electrical Power Systems",
-    duration: "4 Days",
-    level: "Advanced",
-    topics: ["Power distribution design", "Short circuit analysis", "Protective coordination", "Emergency power", "Smart grid integration"],
+    title: "Comprehensive Electrical Design",
+    duration: "3 Months",
+    level: "All Levels",
+    topics: [
+      "Basics of Electrical Designing",
+      "Single phase and Three Phase system",
+      "Transformer, Generator and its selection",
+      "Total Connected Load and Maximum Demand Calculation",
+      "Categories of Power supply",
+      "Power Distribution Flow",
+      "LT Breaker selection (MCB, MCCB, ACB, etc.)",
+      "HT Breaker selection (VCB, DP Structure)",
+      "Distribution Boards (SPN, 7 Segment, VTPN)",
+      "Panel Board selection (MV, MSB, SSB, LSB)",
+      "House Wiring & Layouts",
+      "Cable selection & Voltage Drop",
+      "Cable Tray & Conduit Selection",
+      "Busbar Selection & Sizing",
+      "1 BHK House Electrical Designing",
+      "3 BHK House Design (Mini Project)",
+      "Lighting Calculation (Lux Calculation)",
+      "LT/HT Rules and Regulations",
+      "UPS and its Selection",
+      "CT and PT Selection",
+      "Starters selection",
+      "APFC Panel Calculation",
+      "Hospital Project HT Supply (Main Project)"
+    ],
     accent: "bg-yellow-500",
   },
   {
     category: "Plumbing",
     title: "Sustainable Plumbing Design",
-    duration: "3 Days",
+    duration: "3 Months",
     level: "Beginner",
     topics: ["Water supply design", "Drainage fundamentals", "Conservation strategies", "Rainwater harvesting", "Greywater recycling"],
     accent: "bg-cyan-500",
@@ -140,7 +164,7 @@ const courses = [
   {
     category: "Fire Protection",
     title: "Fire Protection Systems",
-    duration: "4 Days",
+    duration: "3 Months",
     level: "Intermediate",
     topics: ["Fire code compliance", "Sprinkler design", "Detection systems", "Smoke management", "Life safety planning"],
     accent: "bg-red-600",
@@ -148,7 +172,7 @@ const courses = [
   {
     category: "ELV",
     title: "Building Management (BMS)",
-    duration: "3 Days",
+    duration: "3 Months",
     level: "Intermediate",
     topics: ["BMS architecture", "System integration", "Energy management", "Monitoring & analytics", "Cybersecurity"],
     accent: "bg-purple-600",
@@ -156,7 +180,7 @@ const courses = [
   {
     category: "Software",
     title: "MEP BIM with Revit",
-    duration: "5 Days",
+    duration: "3 Months",
     level: "Beginner",
     topics: ["Revit MEP fundamentals", "Creating MEP families", "Coordination workflows", "Clash detection", "Documentation"],
     accent: "bg-emerald-600",
@@ -178,29 +202,40 @@ const CourseCard = ({ course }: { course: typeof courses[0] }) => {
         </div>
       </div>
 
-      <h3 className="text-2xl md:text-3xl font-black text-primary mb-6 uppercase tracking-tighter leading-tight group-hover:text-secondary transition-colors">
-        {course.title}
-      </h3>
+      <div className="flex flex-col h-full">
+        <div className="min-h-[100px] mb-6 flex flex-col justify-center">
+          <h3 className="text-2xl md:text-3xl font-black text-primary uppercase tracking-tighter leading-tight group-hover:text-secondary transition-colors">
+            {course.title}
+          </h3>
+        </div>
 
-      <div className="space-y-4 mb-10 flex-grow">
-        <p className="text-[10px] font-bold text-primary/30 uppercase tracking-[0.2em] mb-4">Core Modules</p>
-        <ul className="space-y-3">
-          {course.topics.map((topic, i) => (
-            <li key={i} className="flex items-center gap-3">
-              <div className="w-1.5 h-1.5 rounded-full bg-secondary/50 group-hover:scale-150 transition-transform duration-300" />
-              <span className="text-primary/60 text-sm font-medium leading-relaxed group-hover:text-primary transition-colors">{topic}</span>
-            </li>
-          ))}
-        </ul>
-      </div>
+        <div className="mb-10 flex-grow flex flex-col">
+          <p className="text-[10px] font-bold text-primary/30 uppercase tracking-[0.2em] mb-6">Course Syllabus</p>
+          <div className="h-[280px] pr-2 overflow-y-auto custom-scrollbar">
+            <ul className="space-y-4">
+              {course.topics.map((topic, i) => (
+                <li key={i} className="flex items-start gap-4 group/item">
+                  <div className="w-5 h-5 rounded-lg bg-secondary/10 flex items-center justify-center flex-shrink-0 mt-0.5 group-hover/item:bg-secondary transition-colors duration-300">
+                    <span className="text-[10px] font-bold text-secondary group-hover/item:text-white">{i + 1}</span>
+                  </div>
+                  <span className="text-primary/70 text-sm font-medium leading-tight group-hover/item:text-primary transition-colors">
+                    {topic}
+                    {topic.includes("(Main Project)") && <span className="ml-2 px-2 py-0.5 bg-primary text-white text-[8px] rounded-full">CORE</span>}
+                  </span>
+                </li>
+              ))}
+            </ul>
+          </div>
+        </div>
 
-      <div className="pt-6 border-t border-grey-50 mt-auto">
-        <Button asChild className="w-full h-14 bg-grey-50 hover:bg-secondary text-primary font-black rounded-2xl group/btn transition-all duration-500">
-          <Link to="/contact" className="flex items-center justify-between px-6">
-            <span className="text-xs uppercase tracking-widest">Enroll Now</span>
-            <ArrowRight className="w-4 h-4 transition-transform duration-300 group-hover/btn:translate-x-1" />
-          </Link>
-        </Button>
+        <div className="pt-6 border-t border-grey-50 mt-auto">
+          <Button asChild className="w-full h-14 bg-grey-50 hover:bg-secondary text-primary font-black rounded-2xl group/btn transition-all duration-500">
+            <Link to="/contact" className="flex items-center justify-between px-6">
+              <span className="text-xs uppercase tracking-widest">Enroll Now</span>
+              <ArrowRight className="w-4 h-4 transition-transform duration-300 group-hover/btn:translate-x-1" />
+            </Link>
+          </Button>
+        </div>
       </div>
     </div>
   );
@@ -223,8 +258,8 @@ const CourseCatalog = () => {
   }, { scope: containerRef });
 
   return (
-    <section ref={containerRef} className="py-24 bg-grey-50 relative overflow-hidden">
-      <div className="container mx-auto px-6 relative z-10">
+    <section ref={containerRef} className="py-24 bg-grey-50 relative overflow-hidden reveal-item">
+      <div className="section-container relative z-10">
         <div className="text-center max-w-3xl mx-auto mb-20">
           <span className="inline-block px-4 py-1.5 bg-secondary/10 text-secondary rounded-full text-xs font-bold tracking-[0.2em] mb-4 uppercase border border-secondary/20">
             Course Catalog
@@ -274,11 +309,11 @@ const CustomTraining = () => {
   }, { scope: containerRef });
 
   return (
-    <section ref={containerRef} className="py-32 bg-grey-50 relative overflow-hidden">
+    <section ref={containerRef} className="py-32 bg-grey-50 relative overflow-hidden reveal-item">
       <div className="absolute top-1/2 left-0 w-full h-full pointer-events-none">
         <div className="absolute top-1/2 -left-1/4 w-[800px] h-[800px] bg-secondary/5 rounded-full blur-[120px]" />
       </div>
-      <div className="container mx-auto px-6 relative z-10">
+      <div className="section-container relative z-10">
         <div className="grid lg:grid-cols-2 gap-24 items-center">
           <div className="space-y-10">
             <div className="custom-reveal">
@@ -337,8 +372,8 @@ const CustomTraining = () => {
 
 const CTASection = () => {
   return (
-    <section className="py-24 bg-grey-50">
-      <div className="container mx-auto px-6">
+    <section className="py-24 bg-grey-50 reveal-item">
+      <div className="section-container">
         <div className="rounded-[3.5rem] p-12 md:p-24 text-center relative overflow-hidden group">
           <div className="absolute inset-0 bg-gradient-to-br from-primary via-primary to-black" />
           <div className="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/carbon-fibre.png')] opacity-20" />
@@ -359,12 +394,20 @@ const CTASection = () => {
                   <ArrowRight className="w-4 h-4 text-secondary transition-transform duration-300 group-hover:translate-x-1" />
                 </Link>
               </Button>
-              <Button asChild className="group relative bg-white text-primary font-black rounded-2xl px-12 h-16 text-xs tracking-widest uppercase shadow-xl hover:shadow-2xl transition-all duration-500 hover:-translate-y-1 hover:scale-105">
-                <a href="tel:+971501234567" className="flex items-center gap-3">
-                  <Phone className="w-4 h-4 text-secondary transition-transform duration-300 group-hover:rotate-12" />
-                  <span>Call Admission</span>
-                </a>
-              </Button>
+              <div className="flex flex-wrap gap-4 justify-center">
+                <Button asChild className="group relative bg-white text-primary font-black rounded-2xl px-8 h-16 text-xs tracking-widest uppercase shadow-xl hover:shadow-2xl transition-all duration-500 hover:-translate-y-1 hover:scale-105">
+                  <a href="tel:+917907825109" className="flex items-center gap-3">
+                    <Phone className="w-4 h-4 text-secondary transition-transform duration-300 group-hover:rotate-12" />
+                    <span>Admission 1</span>
+                  </a>
+                </Button>
+                <Button asChild className="group relative bg-white text-primary font-black rounded-2xl px-8 h-16 text-xs tracking-widest uppercase shadow-xl hover:shadow-2xl transition-all duration-500 hover:-translate-y-1 hover:scale-105">
+                  <a href="tel:+919080477453" className="flex items-center gap-3">
+                    <Phone className="w-4 h-4 text-secondary transition-transform duration-300 group-hover:rotate-12" />
+                    <span>Admission 2</span>
+                  </a>
+                </Button>
+              </div>
             </div>
           </div>
         </div>

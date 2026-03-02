@@ -208,11 +208,11 @@ const contactInfo = [
     icon: Phone,
     title: "Call Us",
     subtitle: "Speak directly to our team",
-    detail: "+91 99624 27775",
+    detail: "+91 79078 25109 / +91 90804 77453",
     footer: "MON-SAT 9AM-6PM",
     color: "blue",
-    content: ["+91 99624 27775", "+91 422 123 4567"],
-    links: ["tel:+919962427775", "tel:+914221234567"],
+    content: ["+91 79078 25109", "+91 90804 77453"],
+    links: ["tel:+917907825109", "tel:+919080477453"],
   },
   {
     icon: Mail,
@@ -231,7 +231,7 @@ const contactInfo = [
     detail: "New Sidhapudur, Coimbatore",
     footer: "GET DIRECTIONS",
     color: "green",
-    content: ["65-67, 3rd Floor, VKK Menon Road,", "(Above Central Bank of India),", "New Sidhapudur, Coimbatore - 44"],
+    content: ["65-67, 3rd Floor, VKK Menon Road,", "(Above Central Bank of India),", "New Sidhapudur, Coimbatore - 641044"],
     links: ["https://www.google.com/maps/search/?api=1&query=Aghora+Design+Academy+MEP+Coimbatore+VKK+Menon+Road"],
   },
 ];
@@ -319,8 +319,8 @@ const ContactSection = () => {
   return (
     <section className="relative z-30">
       {/* White background container for cards separation from hero */}
-      <div className="bg-gradient-to-b from-background via-background to-muted/30 pt-20 pb-24">
-        <div className="container mx-auto px-4">
+      <div className="bg-gradient-to-b from-background via-background to-muted/30 pt-20 pb-24 reveal-item">
+        <div className="section-container">
           {/* Cards with proper spacing from hero - moved down for clear separation */}
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-20 -mt-16">
             {contactInfo.map((info, index) => (

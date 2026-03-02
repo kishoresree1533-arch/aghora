@@ -78,19 +78,42 @@ const HeroSection = () => {
 
 // --- LOGO STRIP ---
 const TrustedBySection = () => {
+  const clients = [
+    "PRANAV HOSPITAL",
+    "SUBSTATION DUBAI",
+    "ADMIN OFFICE DUBAI",
+    "ADNOC OIL PROJECTS",
+    "APOLLO HOSPITAL",
+    "RESIDENTIAL PROJECTS",
+    "HOTELS MADURAI",
+    "HCL IT OFFICE",
+    "COMMERCIAL BUILDINGS",
+    "APARTMENTS ERODE"
+  ];
+
   return (
-    <div className="py-12 bg-white border-b border-grey-100 overflow-hidden">
-      <div className="container mx-auto px-6">
-        <p className="text-center text-[0.65rem] font-bold tracking-[0.4em] text-primary/40 uppercase mb-8">
+    <div className="pt-12 pb-6 bg-white border-b border-grey-100 overflow-hidden relative">
+      <div className="container mx-auto px-6 relative z-10 mb-8">
+        <p className="text-center text-[0.65rem] font-bold tracking-[0.4em] text-primary/40 uppercase">
           Trusted by Families & Businesses Across the Region
         </p>
-        <div className="flex flex-wrap justify-center items-center gap-12 md:gap-24 opacity-30 grayscale hover:grayscale-0 transition-all duration-500">
-          {/* Placeholder Logos */}
-          <div className="text-2xl font-black italic tracking-tighter">CLIENT_ONE</div>
-          <div className="text-2xl font-black italic tracking-tighter">CLIENT_TWO</div>
-          <div className="text-2xl font-black italic tracking-tighter">CLIENT_THREE</div>
-          <div className="text-2xl font-black italic tracking-tighter">CLIENT_FOUR</div>
-          <div className="text-2xl font-black italic tracking-tighter">CLIENT_FIVE</div>
+      </div>
+
+      {/* Marquee Container */}
+      <div className="flex overflow-hidden group">
+        <div className="flex animate-marquee gap-12 md:gap-24 items-center opacity-30 grayscale hover:grayscale-0 transition-all duration-500 py-4">
+          {/* First Set of Names */}
+          {clients.map((client, idx) => (
+            <div key={`set1-${idx}`} className="text-xl font-black italic tracking-tighter whitespace-nowrap px-4">
+              {client}
+            </div>
+          ))}
+          {/* Duplicated Set for Seamless Loop */}
+          {clients.map((client, idx) => (
+            <div key={`set2-${idx}`} className="text-xl font-black italic tracking-tighter whitespace-nowrap px-4">
+              {client}
+            </div>
+          ))}
         </div>
       </div>
     </div>
@@ -134,8 +157,8 @@ const PremiumStatsSection = () => {
   }, { scope: containerRef });
 
   return (
-    <section ref={containerRef} className="py-32 bg-white overflow-hidden">
-      <div className="container mx-auto px-6">
+    <section ref={containerRef} className="pt-16 pb-32 bg-white overflow-hidden reveal-item">
+      <div className="section-container">
         <div className="grid lg:grid-cols-2 gap-20 items-center">
           <div className="relative">
             <div className="h-[600px] w-full rounded-[3rem] overflow-hidden shadow-2xl relative group premium-popup">
@@ -349,8 +372,8 @@ const ServicesSection = () => {
   }, { scope: containerRef });
 
   return (
-    <section ref={containerRef} className="pt-10 pb-12 bg-white overflow-hidden">
-      <div className="container mx-auto px-6">
+    <section ref={containerRef} className="pt-10 pb-12 bg-white overflow-hidden reveal-item">
+      <div className="section-container">
         <div className="text-center max-w-3xl mx-auto mb-20 space-y-6">
           <span className="text-sm font-bold tracking-[0.3em] text-secondary uppercase block">
             Our Expertise
@@ -462,12 +485,12 @@ const StrategicCapabilitiesSection = () => {
   }, { scope: containerRef });
 
   return (
-    <section ref={containerRef} className="pt-12 pb-12 bg-primary relative overflow-hidden">
+    <section ref={containerRef} className="pt-12 pb-12 bg-primary relative overflow-hidden reveal-item">
       {/* Visual background elements */}
       <div className="absolute top-0 right-0 w-1/3 h-full bg-secondary/5 skew-x-12 transform translate-x-1/2" />
       <div className="absolute bottom-0 left-0 w-64 h-64 bg-secondary/10 rounded-full blur-[120px] -translate-x-1/2 translate-y-1/2 opacity-50" />
 
-      <div className="container mx-auto px-6 relative z-10">
+      <div className="section-container relative z-10">
         <div className="flex flex-col lg:flex-row gap-20 items-center">
           <div className="lg:w-1/2 space-y-8 cap-text">
             <span className="text-secondary font-bold tracking-[0.4em] uppercase text-[0.6rem]">Technical Superiority</span>
@@ -555,8 +578,8 @@ const TechnicalMasterySection = () => {
   }, { scope: containerRef });
 
   return (
-    <section ref={containerRef} className="pt-12 pb-12 bg-white overflow-hidden">
-      <div className="container mx-auto px-6">
+    <section ref={containerRef} className="pt-12 pb-12 bg-white overflow-hidden reveal-item">
+      <div className="section-container">
         <div className="grid lg:grid-cols-12 gap-16 items-start">
           <div className="lg:col-span-5 space-y-12">
             <div className="space-y-6">
@@ -676,8 +699,8 @@ const ProcessSection = () => {
 // --- CTA SECTION ---
 const CTASection = () => {
   return (
-    <section className="pt-10 pb-10 bg-white">
-      <div className="container mx-auto px-6">
+    <section className="pt-10 pb-10 bg-white reveal-item">
+      <div className="section-container">
         <div className="bg-primary rounded-[3rem] p-12 md:p-20 text-center text-white relative overflow-hidden group">
           <div className="absolute inset-0 z-0 opacity-10 grayscale hover:opacity-20 transition-opacity">
             <img src={innovativeEngineeringImg} alt="Background" className="w-full h-full object-cover" />

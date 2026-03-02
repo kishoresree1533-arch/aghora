@@ -111,9 +111,9 @@ const CompanyOverviewSection = () => {
   }, { scope: sectionRef });
 
   return (
-    <section ref={sectionRef} className="py-24 bg-white relative overflow-hidden">
+    <section ref={sectionRef} className="py-24 bg-white relative overflow-hidden reveal-item">
       <div className="absolute top-0 left-0 w-full h-[500px] bg-gradient-to-b from-grey-50 to-transparent -z-10" />
-      <div className="container mx-auto px-6">
+      <div className="section-container">
         <div className="flex flex-col lg:flex-row gap-20 items-start">
           <div className="lg:w-1/2 space-y-8 sticky top-32">
             <div>
@@ -210,12 +210,12 @@ const CoreServicesSection = () => {
   }, { scope: containerRef });
 
   return (
-    <section ref={containerRef} className="py-24 bg-primary relative overflow-hidden">
+    <section ref={containerRef} className="py-24 bg-primary relative overflow-hidden reveal-item">
       {/* Abstract Background Shapes */}
       <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-secondary/5 rounded-full blur-[100px] pointer-events-none" />
       <div className="absolute bottom-0 left-0 w-[400px] h-[400px] bg-blue-500/5 rounded-full blur-[100px] pointer-events-none" />
 
-      <div className="container mx-auto px-6 relative z-10">
+      <div className="section-container relative z-10">
         <div className="text-center mb-20">
           <span className="text-sm font-bold tracking-[0.3em] text-secondary uppercase block mb-4">What We Do</span>
           <h2 className="text-4xl md:text-5xl font-black text-white uppercase tracking-tighter mb-6">
@@ -272,10 +272,10 @@ const ExperienceIndustriesSection = () => {
   ];
 
   return (
-    <section className="py-24 bg-grey-50 relative overflow-hidden">
+    <section className="py-24 bg-grey-50 relative overflow-hidden reveal-item">
       <div className="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/cubes.png')] opacity-[0.03]" />
 
-      <div className="container mx-auto px-6 relative z-10">
+      <div className="section-container relative z-10">
         <div className="grid lg:grid-cols-12 gap-16 items-center">
           <div className="lg:col-span-5">
             <span className="text-sm font-bold tracking-[0.3em] text-secondary uppercase block mb-6">Experience</span>
@@ -354,8 +354,8 @@ const PhilosophySection = () => {
   ];
 
   return (
-    <section className="py-24 bg-white relative overflow-hidden">
-      <div className="container mx-auto px-6">
+    <section className="py-24 bg-white relative overflow-hidden reveal-item">
+      <div className="section-container">
         <div className="text-center max-w-3xl mx-auto mb-20">
           <span className="text-sm font-bold tracking-[0.3em] text-secondary uppercase block mb-4">Foundation</span>
           <h2 className="text-4xl md:text-6xl font-black text-primary uppercase tracking-tighter leading-none">
@@ -425,8 +425,8 @@ const WhyChooseUsSection = () => {
   }, { scope: containerRef });
 
   return (
-    <section ref={containerRef} className="py-24 bg-white overflow-hidden relative">
-      <div className="container mx-auto px-6">
+    <section ref={containerRef} className="py-24 bg-white overflow-hidden relative reveal-item">
+      <div className="section-container">
         <div className="flex flex-col lg:flex-row gap-20 items-center">
           <div className="lg:w-1/2 relative group why-choose-visual">
             <div className="relative z-10 rounded-[3rem] overflow-hidden shadow-2xl border-[8px] border-white h-[600px] w-full bg-grey-50 transition-transform duration-500 hover:rotate-1 hover:scale-[1.02]">
@@ -493,8 +493,8 @@ const WhyChooseUsSection = () => {
 // CTA Section
 const CTASection = () => {
   return (
-    <section className="py-24 bg-grey-50 px-6">
-      <div className="container mx-auto">
+    <section className="py-24 bg-grey-50 px-6 reveal-item">
+      <div className="section-container">
         <div className="bg-primary rounded-[3rem] p-12 md:p-20 text-center text-white relative overflow-hidden group">
           <div className="absolute inset-0 z-0 opacity-10 grayscale bg-[url('https://images.unsplash.com/photo-1541888946425-d81bb19480c5?auto=format&fit=crop&q=80&w=1200')]" />
 

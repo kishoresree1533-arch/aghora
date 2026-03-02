@@ -4,7 +4,7 @@ import { Button } from "@/components/ui/button";
 
 const FloatingActions = () => {
     const [isVisible, setIsVisible] = useState(false);
-    const whatsappNumber = "+919962427775";
+    const whatsappNumber = "+917907825109";
     const whatsappMessage = "Hello Aghora Engineering, I would like to inquire about your MEP services.";
 
     // Show button when page is scrolled up to given distance

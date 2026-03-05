@@ -114,8 +114,8 @@ const CompanyOverviewSection = () => {
     <section ref={sectionRef} className="py-24 bg-white relative overflow-hidden reveal-item">
       <div className="absolute top-0 left-0 w-full h-[500px] bg-gradient-to-b from-grey-50 to-transparent -z-10" />
       <div className="section-container">
-        <div className="flex flex-col lg:flex-row gap-20 items-stretch">
-          <div className="lg:w-1/2 flex flex-col justify-center space-y-8 sticky top-32">
+        <div className="flex flex-col lg:flex-row gap-12 lg:gap-20 items-stretch">
+          <div className="lg:w-1/2 flex flex-col justify-center space-y-8 lg:sticky lg:top-32">
             <div>
               <span className="inline-block py-1 px-3 rounded-full bg-secondary/10 text-secondary text-xs font-bold tracking-[0.2em] uppercase mb-6 border border-secondary/20">
                 Company Overview
@@ -144,7 +144,7 @@ const CompanyOverviewSection = () => {
             </p>
           </div>
 
-          <div className="lg:w-1/2 flex flex-col justify-center space-y-8">
+          <div className="lg:w-1/2 flex flex-col justify-center space-y-8 mt-10 lg:mt-0">
             {/* Timeline Item 1 */}
             <div className="relative pl-12 border-l-2 border-secondary/20 hover:border-secondary transition-colors duration-500 group reveal-text">
               <div className="absolute -left-[9px] top-0 w-4 h-4 rounded-full bg-white border-4 border-secondary group-hover:scale-125 transition-transform duration-300" />
